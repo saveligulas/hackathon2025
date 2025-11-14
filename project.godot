@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="Hackathon2025"
-run/main_scene="res://scenes/game_manager.tscn"
+run/main_scene="uid://qof4nkv64p8n"
 config/features=PackedStringArray("4.5", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*res://game_manager.gd"
+GameManager="*res://src/core/gameManager.gd"
 
 [display]
 
