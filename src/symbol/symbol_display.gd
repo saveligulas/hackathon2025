@@ -7,6 +7,7 @@ extends Node2D
 
 @onready var color_rect: ColorRect = $ColorRect
 @onready var label: Label = $ColorRect/Label
+@onready var sprite: Sprite2D = $Sprite2D if has_node("Sprite2D") else null
 
 func _ready():
     if symbol_data:
@@ -19,16 +20,26 @@ func update_display():
     if symbol_data == null:
         return
     
-    # Different colors for different point values
-    match symbol_data.points:
-        1: color_rect.color = Color.RED
-        2: color_rect.color = Color.BLUE
-        3: color_rect.color = Color.GREEN
-        5: color_rect.color = Color.YELLOW
-        10: color_rect.color = Color.PURPLE
-        _: color_rect.color = Color.WHITE
-    
-    # Show point value
-    label.text = str(symbol_data.points)
-    label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+    if symbol_data.has("texture") and symbol_data.texture != null:
+        if sprite:
+            sprite.texture = symbol_data.texture
+            sprite.show()
+        if color_rect:
+            color_rect.hide()
+    else:
+        if sprite:
+            sprite.hide()
+        if color_rect:
+            color_rect.show()
+            
+            match symbol_data.points:
+                1: color_rect.color = Color.RED
+                2: color_rect.color = Color.BLUE
+                3: color_rect.color = Color.GREEN
+                5: color_rect.color = Color.YELLOW
+                10: color_rect.color = Color.PURPLE
+                _: color_rect.color = Color.WHITE
+            
+            label.text = str(symbol_data.points)
+            label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+            label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER

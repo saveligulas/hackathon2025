@@ -4,7 +4,6 @@ extends RefCounted
 var result_grid: Array = []  # 5x3 grid
 
 func _init():
-    # Initialize 5x3 grid
     result_grid.resize(5)
     for i in range(5):
         result_grid[i] = []
