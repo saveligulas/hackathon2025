@@ -5,3 +5,5 @@ extends Resource
 @export var points: int = 1
 @export var mult: int = 1
 @export var description: String = "Placeholder"
+@export var texture: Texture2D = null
+@export var symbol_name: String = ""
