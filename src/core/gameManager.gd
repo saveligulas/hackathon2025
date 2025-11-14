@@ -29,7 +29,7 @@ func _handle_state_transition(new_state, previous_state):
 		GameState.PLAYING:
 			print("[GameState] Change to Playing")
 			if (previous_state == GameState.MENU):
-				run_manager.Initialize()
+				run_manager.initialize()
 			get_tree().change_scene_to_file("res://scenes/playing.tscn")
 		GameState.SHOP:
 			print("[GameState] Change to Shop")
@@ -37,6 +37,3 @@ func _handle_state_transition(new_state, previous_state):
 		GameState.GAME_OVER:
 			print("[GameState] Change to Game Over")
 			run_manager.Reset()
-			
-func _on_main_menu_play_button_pressed():
-	print("FUCK YOU JASON")
