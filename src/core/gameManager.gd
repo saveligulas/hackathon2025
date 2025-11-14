@@ -15,10 +15,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-func reset_game():
-	# Reset points and stuff.
-	pass
-
 func _handle_state_change(new_state):
 	game_state_changed.emit(new_state)
 	_handle_state_transition(new_state)
@@ -33,5 +29,6 @@ func _handle_state_transition(new_state):
 			get_tree().change_scene_to_file("res://scenes/playing.tscn")
 		GameState.SHOP:
 			print("[GameState] Change to Shop")
+			get_tree().change_scene_to_file("res://scenes/shop.tscn")
 		GameState.GAME_OVER:
 			print("[GameState] Change to Game Over")
