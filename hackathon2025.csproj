@@ -5,4 +5,8 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
       <RootNamespace>hackathon_2025</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\core\" />
+    <Folder Include="src\modifiers\" />
+  </ItemGroup>
 </Project>
