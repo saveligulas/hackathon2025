@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://uymynamptghj"]
+[gd_scene load_steps=2 format=3 uid="uid://b6kp5y867mlxy"]
 
 [ext_resource type="Script" uid="uid://cljcr5ci5arug" path="res://src/core/gameManager.gd" id="1_hwd4i"]
 

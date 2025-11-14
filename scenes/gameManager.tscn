@@ -4,3 +4,4 @@
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_83k1r")
+current_state = null
