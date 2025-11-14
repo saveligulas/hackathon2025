@@ -9,11 +9,9 @@ var current_state := GameState.MENU:
 		current_state = value
 		_handle_state_change(value)
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("Game Manager initialized")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
