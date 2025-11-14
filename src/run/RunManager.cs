@@ -33,7 +33,7 @@ public partial class RunManager : Node, Initializable
 		Symbol[,] symbols = _slotMachineManager.ResultGrid;
 		for (int i = 0; i < symbols.GetLength(0); i++)
 		{
-			GD.Print(symbols[i, 0].GetName());
+			GD.Print(symbols[i, 0]);
 		}
 	}
 }
