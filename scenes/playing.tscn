@@ -49,29 +49,33 @@ animations = [{
 [node name="Playing" type="Node2D"]
 script = ExtResource("1_03hel")
 
-[node name="Background" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(1280, 720)
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0.8453288, 0.8453288, 0.84532875, 1)
-
 [node name="Slot Machine" type="Sprite2D" parent="."]
 scale = Vector2(0.66834486, 0.66759264)
 texture = ExtResource("1_43x5a")
 centered = false
 
-[node name="Button" type="Button" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-offset_left = 1133.0
-offset_top = 176.0
-offset_right = 1239.0
-offset_bottom = 722.0
+[node name="Background" type="ColorRect" parent="Slot Machine"]
+z_index = -1
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 1919.6677
+offset_bottom = 1079.9999
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.8453288, 0.8453288, 0.84532875, 1)
 
-[node name="Lever" type="AnimatedSprite2D" parent="Button"]
-position = Vector2(53, 273)
-scale = Vector2(0.668, 0.668)
+[node name="Button" type="Button" parent="Slot Machine"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 1669.7966
+offset_top = 263.63382
+offset_right = 1799.969
+offset_bottom = 471.84464
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Lever" type="AnimatedSprite2D" parent="Slot Machine/Button"]
+position = Vector2(64.33801, 408.9319)
 sprite_frames = SubResource("SpriteFrames_0bln8")
 animation = &"pull"
 autoplay = "idle"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Slot Machine/Button" to="." method="_on_button_pressed"]

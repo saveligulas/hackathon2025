@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var lever: AnimatedSprite2D = $Button/Lever
+@onready var lever: AnimatedSprite2D = $"Slot Machine/Button/Lever"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
