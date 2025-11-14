@@ -8,15 +8,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="Shop Label" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Shop Label" type="Label" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
@@ -24,74 +31,75 @@ text = "Shop"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer"]
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/h_separation = 32
 
-[node name="Information" type="VBoxContainer" parent="VBoxContainer/HFlowContainer"]
+[node name="Information" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HFlowContainer"]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 theme_override_constants/separation = 64
 
-[node name="Cash" type="VBoxContainer" parent="VBoxContainer/HFlowContainer/Information"]
+[node name="Cash" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HFlowContainer/Information"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="VBoxContainer/HFlowContainer/Information/Cash"]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer/Information/Cash"]
 layout_mode = 2
 text = "Cash"
 
-[node name="Value" type="Label" parent="VBoxContainer/HFlowContainer/Information/Cash"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer/Information/Cash"]
 layout_mode = 2
 text = "23"
 
-[node name="Spins" type="VBoxContainer" parent="VBoxContainer/HFlowContainer/Information"]
+[node name="Spins" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HFlowContainer/Information"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="VBoxContainer/HFlowContainer/Information/Spins"]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer/Information/Spins"]
 layout_mode = 2
 text = "Re-Spins"
 
-[node name="Value" type="Label" parent="VBoxContainer/HFlowContainer/Information/Spins"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer/Information/Spins"]
 layout_mode = 2
 text = "3"
 
-[node name="Spins2" type="VBoxContainer" parent="VBoxContainer/HFlowContainer/Information"]
+[node name="Spins2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HFlowContainer/Information"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="VBoxContainer/HFlowContainer/Information/Spins2"]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer/Information/Spins2"]
 layout_mode = 2
 text = "Selected Slot Machine"
 
-[node name="Value" type="Label" parent="VBoxContainer/HFlowContainer/Information/Spins2"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer/Information/Spins2"]
 layout_mode = 2
 text = "Machine Mk. 4"
 
-[node name="Spins3" type="VBoxContainer" parent="VBoxContainer/HFlowContainer/Information"]
+[node name="Spins3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HFlowContainer/Information"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="VBoxContainer/HFlowContainer/Information/Spins3"]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer/Information/Spins3"]
 layout_mode = 2
 text = "Selected Card"
 
-[node name="Value" type="Label" parent="VBoxContainer/HFlowContainer/Information/Spins3"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer/Information/Spins3"]
 layout_mode = 2
 text = "Double Diagonals"
 
-[node name="Items" type="VBoxContainer" parent="VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(640, 0)
+[node name="Items" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 64
 
-[node name="Item1" type="HBoxContainer" parent="VBoxContainer/HFlowContainer/Items"]
+[node name="Item1" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HFlowContainer/Items"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="VBoxContainer/HFlowContainer/Items/Item1"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer/Items/Item1"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HFlowContainer/Items/Item1/Button"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HFlowContainer/Items/Item1/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,29 +108,29 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 
-[node name="Type Label" type="Label" parent="VBoxContainer/HFlowContainer/Items/Item1/Button/VBoxContainer"]
+[node name="Type Label" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer/Items/Item1/Button/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Card"
 
-[node name="Name" type="Label" parent="VBoxContainer/HFlowContainer/Items/Item1/Button/VBoxContainer"]
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer/Items/Item1/Button/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Low Risk High Reward"
 
-[node name="Description" type="Label" parent="VBoxContainer/HFlowContainer/Items/Item1/Button/VBoxContainer"]
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer/Items/Item1/Button/VBoxContainer"]
 layout_mode = 2
 text = "Every lesser symbol is worth 5x but higher symbols are worth nothing"
 
-[node name="Item2" type="HBoxContainer" parent="VBoxContainer/HFlowContainer/Items"]
+[node name="Item2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HFlowContainer/Items"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="VBoxContainer/HFlowContainer/Items/Item2"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer/Items/Item2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HFlowContainer/Items/Item2/Button"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HFlowContainer/Items/Item2/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -131,29 +139,29 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 
-[node name="Type Label" type="Label" parent="VBoxContainer/HFlowContainer/Items/Item2/Button/VBoxContainer"]
+[node name="Type Label" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer/Items/Item2/Button/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Booster"
 
-[node name="Name" type="Label" parent="VBoxContainer/HFlowContainer/Items/Item2/Button/VBoxContainer"]
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer/Items/Item2/Button/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Double Diagonals"
 
-[node name="Description" type="Label" parent="VBoxContainer/HFlowContainer/Items/Item2/Button/VBoxContainer"]
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer/Items/Item2/Button/VBoxContainer"]
 layout_mode = 2
 text = "2x Mult when points are scored only diagonally"
 
-[node name="Item3" type="HBoxContainer" parent="VBoxContainer/HFlowContainer/Items"]
+[node name="Item3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HFlowContainer/Items"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="VBoxContainer/HFlowContainer/Items/Item3"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer/Items/Item3"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HFlowContainer/Items/Item3/Button"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HFlowContainer/Items/Item3/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -162,31 +170,31 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 
-[node name="Type Label" type="Label" parent="VBoxContainer/HFlowContainer/Items/Item3/Button/VBoxContainer"]
+[node name="Type Label" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer/Items/Item3/Button/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Enhancement"
 
-[node name="Name" type="Label" parent="VBoxContainer/HFlowContainer/Items/Item3/Button/VBoxContainer"]
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer/Items/Item3/Button/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Increase Base points"
 
-[node name="Description" type="Label" parent="VBoxContainer/HFlowContainer/Items/Item3/Button/VBoxContainer"]
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer/HFlowContainer/Items/Item3/Button/VBoxContainer"]
 layout_mode = 2
 text = "Add +5 to all scored symbols"
 
-[node name="Select" type="VBoxContainer" parent="VBoxContainer/HFlowContainer"]
+[node name="Select" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HFlowContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 64
 
-[node name="Change Slot Machine" type="Button" parent="VBoxContainer/HFlowContainer/Select"]
+[node name="Change Slot Machine" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer/Select"]
 custom_minimum_size = Vector2(0, 88)
 layout_mode = 2
 text = "Change Slot Machine"
 
-[node name="Change Card" type="Button" parent="VBoxContainer/HFlowContainer/Select"]
+[node name="Change Card" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer/Select"]
 custom_minimum_size = Vector2(0, 88)
 layout_mode = 2
 text = "Change Card"
