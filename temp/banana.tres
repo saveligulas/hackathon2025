@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Symbol" load_steps=3 format=3 uid="uid://dwx5gx7o7l33n"]
+
+[ext_resource type="Script" uid="uid://uwyu6wwpaujs" path="res://src/core/SpinModifier.cs" id="1_fdc6k"]
+[ext_resource type="Script" uid="uid://uf8vwauolkrd" path="res://src/core/Symbol.cs" id="2_wru8a"]
+
+[resource]
+script = ExtResource("2_wru8a")
