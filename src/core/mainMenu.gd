@@ -14,7 +14,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_play_pressed() -> void:
-	GameManager.current_state = GameManager.GameState.SHOP # Change back to playing after testing
+	GameManager.current_state = GameManager.GameState.PLAYING
 
 
 func _on_quit_pressed() -> void:
