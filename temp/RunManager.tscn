@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://etprqw7bt31"]
+
+[ext_resource type="Script" uid="uid://bx3brc1xx52mj" path="res://src/run/RunManager.cs" id="1_406ei"]
+[ext_resource type="Resource" uid="uid://dwx5gx7o7l33n" path="res://temp/banana.tres" id="2_4lr03"]
+
+[node name="RunManager" type="Node2D"]
+script = ExtResource("1_406ei")
+StartingSymbols = Array[Resource]([ExtResource("2_4lr03")])
