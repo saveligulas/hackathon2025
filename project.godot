@@ -10,17 +10,11 @@ config_version=5
 
 [application]
 
-config/name="Hackathon2025"
-run/main_scene="uid://qof4nkv64p8n"
-config/features=PackedStringArray("4.5", "Forward Plus")
-run/max_fps=60
+config/name="hackathon2025"
+run/main_scene="uid://etprqw7bt31"
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
-[autoload]
+[dotnet]
 
-GameManager="*res://src/core/gameManager.gd"
-
-[display]
-
-window/size/viewport_width=1280
-window/size/viewport_height=740
+project/assembly_name="hackathon2025"
