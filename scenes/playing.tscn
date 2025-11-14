@@ -1,3 +1,76 @@
-[gd_scene format=3 uid="uid://86y103knbn0s"]
+[gd_scene load_steps=10 format=3 uid="uid://86y103knbn0s"]
+
+[ext_resource type="Script" uid="uid://dl3sssariprb8" path="res://src/core/playing.gd" id="1_03hel"]
+[ext_resource type="Texture2D" uid="uid://qytk8bn4x312" path="res://assets/sprites/MachineFrame.png" id="1_43x5a"]
+[ext_resource type="Texture2D" uid="uid://dnp40yy75ce66" path="res://assets/sprites/Lever1.png" id="2_0rsyx"]
+[ext_resource type="Texture2D" uid="uid://cm1keujkgta30" path="res://assets/sprites/Lever2.png" id="3_03hel"]
+[ext_resource type="Texture2D" uid="uid://daekv57vwbdt4" path="res://assets/sprites/Lever3.png" id="4_rq5p2"]
+[ext_resource type="Texture2D" uid="uid://dflhwijhy3g2a" path="res://assets/sprites/Lever4.png" id="5_ir0cj"]
+[ext_resource type="Texture2D" uid="uid://yvk70glwk2fq" path="res://assets/sprites/Lever5.png" id="6_oysb3"]
+[ext_resource type="Texture2D" uid="uid://bb15uj8ntxecw" path="res://assets/sprites/Lever6.png" id="7_r0gq1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0bln8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0rsyx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0rsyx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_03hel")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rq5p2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ir0cj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_oysb3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_r0gq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0rsyx")
+}],
+"loop": false,
+"name": &"pull",
+"speed": 10.0
+}]
 
 [node name="Playing" type="Node2D"]
+script = ExtResource("1_03hel")
+
+[node name="Background" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1280, 720)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.8453288, 0.8453288, 0.84532875, 1)
+
+[node name="Slot Machine" type="Sprite2D" parent="."]
+scale = Vector2(0.66834486, 0.66759264)
+texture = ExtResource("1_43x5a")
+centered = false
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 1133.0
+offset_top = 176.0
+offset_right = 1239.0
+offset_bottom = 722.0
+
+[node name="Lever" type="AnimatedSprite2D" parent="Button"]
+position = Vector2(53, 273)
+scale = Vector2(0.668, 0.668)
+sprite_frames = SubResource("SpriteFrames_0bln8")
+animation = &"pull"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
