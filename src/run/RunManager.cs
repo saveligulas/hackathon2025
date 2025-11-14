@@ -26,14 +26,13 @@ public partial class RunManager : Node, Initializable
 		}
 	}
 
+	public void Reset()
+	{
+		//TODO
+	}
+
 	public override void _Ready()
 	{
-		Initialize();
-		_slotMachineManager.Spin(PlayerData);
-		Symbol[,] symbols = _slotMachineManager.ResultGrid;
-		for (int i = 0; i < symbols.GetLength(0); i++)
-		{
-			GD.Print(symbols[i, 0]);
-		}
+		GD.Print("I LOADED RUNMANAGER");
 	}
 }
