@@ -2,12 +2,16 @@ extends Node
 
 enum GameState {MENU, PLAYING, SHOP, GAME_OVER}
 signal game_state_changed
-var current_state = GameState.PLAYING
+
+@export
+var current_state := GameState.PLAYING:
+	set(value):
+		current_state = value
+		_handle_state_change(value)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("Game Manager initialized")
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -17,8 +21,7 @@ func reset_game():
 	# Reset points and stuff.
 	pass
 
-func change_state(new_state):
-	current_state = new_state
+func _handle_state_change(new_state):
 	game_state_changed.emit(new_state)
 	_handle_state_transition(new_state)
 
