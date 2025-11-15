@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 GameManager="*res://scenes/gameManager.tscn"
 PatternLoader="*res://src/score/pattern_loader.gd"
+AudioManager="*res://src/core/audioManager.gd"
 
 [display]
 

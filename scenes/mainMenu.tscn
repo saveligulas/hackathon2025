@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d26a3yqiodc18"]
+[gd_scene load_steps=3 format=3 uid="uid://d26a3yqiodc18"]
 
 [ext_resource type="Script" uid="uid://uear4i3t1lvp" path="res://src/core/mainMenu.gd" id="1_qkhwq"]
+[ext_resource type="Texture2D" uid="uid://bgeojx0d75qo5" path="res://assets/sprites/MainMenuCover.png" id="2_3d1i7"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -37,6 +38,20 @@ custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Quit"
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_3d1i7")
+expand_mode = 1
+
+[node name="MainMenuTheme" type="AudioStreamPlayer" parent="."]
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

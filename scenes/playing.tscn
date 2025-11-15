@@ -303,4 +303,9 @@ scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_wv4xg")
 autoplay = "default"
 
+[node name="MachineNoises" type="AudioStreamPlayer" parent="."]
+max_polyphony = 5
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+
 [connection signal="pressed" from="Slot Machine/Lever" to="." method="_on_button_pressed"]
