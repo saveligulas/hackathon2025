@@ -1,3 +1,4 @@
+class_name SpinModifier
 extends Resource
 
 var modifier_order: int

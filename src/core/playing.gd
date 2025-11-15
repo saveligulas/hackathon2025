@@ -55,12 +55,10 @@ func spin_reels():
                 print("Col ", i, " Row ", row, ": ", sym.description, " (", sym.points, " pts)")
 
         reel_container.display_reel(i, column_symbols)
-
     spin_finished()
 
 func spin_finished():
     is_spinning = false
-
     await get_tree().create_timer(1).timeout
 
     await stagger_reveal()
