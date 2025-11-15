@@ -8,9 +8,17 @@ func initialize():
 	reels.resize(5)
 	for i in range(5):
 		reels[i] = Reel.new()
-		
-	var relic_scene = load("res://scenes/relics/goldenCalculatorRelic.tscn")
-	var relic_instance = relic_scene.instantiate()
-	relics.append(relic_instance)
-	print(relics)
-	print(relic_instance.relic_effects)
+	
+	# Test with different relics
+	var test_relics = [
+		load("res://src/relics/lucky_clover_relic.gd").new(),
+		load("res://src/relics/eye_fortune_relic.gd").new(),
+		load("res://src/relics/palm_reader_relic.gd").new(),
+		load("res://src/relics/pattern_master_relic.gd").new(),
+		load("res://src/relics/fingerprint_eraser_relic.gd").new(),
+	]
+	
+	for relic in test_relics:
+		relics.append(relic)
+	
+	print("Initialized with %d relics" % relics.size())
