@@ -221,20 +221,20 @@ theme_override_font_sizes/font_size = 48
 text = "1"
 horizontal_alignment = 1
 
-[node name="Modifier" type="VBoxContainer" parent="Slot Machine/MarginContainer/Information"]
+[node name="ModifierContainer" type="VBoxContainer" parent="Slot Machine/MarginContainer/Information"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Title" type="Label" parent="Slot Machine/MarginContainer/Information/Modifier"]
+[node name="Title" type="Label" parent="Slot Machine/MarginContainer/Information/ModifierContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Modifier"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Slot Machine/MarginContainer/Information/Modifier"]
+[node name="Modifier" type="VBoxContainer" parent="Slot Machine/MarginContainer/Information/ModifierContainer"]
 layout_mode = 2
 
-[node name="Mod1" type="Label" parent="Slot Machine/MarginContainer/Information/Modifier/VBoxContainer"]
+[node name="Mod1" type="Label" parent="Slot Machine/MarginContainer/Information/ModifierContainer/Modifier"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Double Trouble"

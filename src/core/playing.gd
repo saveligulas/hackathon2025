@@ -10,6 +10,14 @@ extends Node2D
     $ReelContainer/Spin4,
     $ReelContainer/Spin5
 ]
+@onready var goal_label: Label = $"Slot Machine/MarginContainer/Information/Goal/Value"
+@onready var score_label: Label = $"Slot Machine/MarginContainer/Information/Score/Value"
+@onready var points_label: Label = $"Slot Machine/MarginContainer/Information/Calculation/Points"
+@onready var mult_label: Label = $"Slot Machine/MarginContainer/Information/Calculation/Mult"
+@onready var reel_spin_label: Label = $"Slot Machine/MarginContainer/Information/HBoxContainer/ReelSpin/Value"
+@onready var round_label: Label = $"Slot Machine/MarginContainer/Information/HBoxContainer/Round/Value"
+@onready var modifier_list: VBoxContainer = $"Slot Machine/MarginContainer/Information/ModifierContainer/Modifier"
+
 var is_spinning: bool = false
 var run_manager: Node
 
