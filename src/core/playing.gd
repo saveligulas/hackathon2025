@@ -17,6 +17,7 @@ extends Node2D
 @onready var reel_spin_label: Label = $"Slot Machine/MarginContainer/Information/HBoxContainer/ReelSpin/Value"
 @onready var round_label: Label = $"Slot Machine/MarginContainer/Information/HBoxContainer/Round/Value"
 @onready var modifier_list: VBoxContainer = $"Slot Machine/MarginContainer/Information/ModifierContainer/Modifier"
+@onready var spins_left: Label = $"Slot Machine/MarginContainer2/Spins/Value"
 
 var is_spinning: bool = false
 var run_manager: Node
@@ -53,6 +54,7 @@ func _on_spin_started():
     is_spinning = true
     reel_container.start_spinners()
     reel_container.prepare_all_reels()
+    update_ui_labels()
 
 func _on_spin_completed(result_grid: Array):
     print("\n=== Spin Result ===")
@@ -92,6 +94,7 @@ func update_ui_labels():
     goal_label.text = str(run_manager.get_current_goal())
     score_label.text = str(run_manager.get_total_score())
     round_label.text = str(run_manager.get_current_round())
+    spins_left.text = str(run_manager.MAX_SPINS_PER_ROUND - run_manager.spins_this_round)
 
 func _on_goal_reached():
     await get_tree().create_timer(5).timeout

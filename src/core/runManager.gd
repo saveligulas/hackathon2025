@@ -14,6 +14,8 @@ signal round_advanced
 var current_goal: int = 20
 var current_round: int = 1
 var total_score: int = 0
+var spins_this_round: int = 0
+const MAX_SPINS_PER_ROUND := 5
 
 func _ready():
     print("RunManager loaded")
@@ -32,6 +34,8 @@ func load_starting_symbols():
 func initialize():
     game_state = GameState.new()
     slot_machine_manager = SlotMachineManager.new()
+    spins_this_round = 0
+    total_score = 0
 
     if game_state.player_data == null:
         game_state.player_data = PlayerData.new()
@@ -45,6 +49,11 @@ func initialize():
 
 func execute_spin() -> Array:
     print("Executing spin...")
+    if not can_spin():
+        print("No spins left this round!")
+        GameManager.change_phase(GameManager.GamePhase.GAMEOVER)
+        return []
+    spins_this_round += 1
 
     # Apply BEFORE_SPIN effects
     apply_effects(Effect.EffectTiming.BEFORE_SPIN)
@@ -125,16 +134,19 @@ func on_score_evaluated(score: int):
     total_score += score
     if total_score >= current_goal:
         emit_signal("goal_reached")
-        advance_round()
 
 func advance_round():
     current_round += 1
+    spins_this_round = 0
     emit_signal("round_advanced")
 
 func reset_round_for_goal():
     @warning_ignore("narrowing_conversion")
     current_goal = int(current_goal * 1.5)
     total_score = 0
+
+func can_spin() -> bool:
+    return spins_this_round < MAX_SPINS_PER_ROUND
 
 func get_current_goal():
     return current_goal
