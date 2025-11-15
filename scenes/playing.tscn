@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://86y103knbn0s"]
+[gd_scene load_steps=19 format=3 uid="uid://86y103knbn0s"]
 
 [ext_resource type="Script" uid="uid://dl3sssariprb8" path="res://src/core/playing.gd" id="1_03hel"]
 [ext_resource type="Texture2D" uid="uid://qytk8bn4x312" path="res://assets/sprites/MachineFrame.png" id="1_43x5a"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://yvk70glwk2fq" path="res://assets/sprites/Lever5.png" id="6_oysb3"]
 [ext_resource type="Texture2D" uid="uid://bb15uj8ntxecw" path="res://assets/sprites/Lever6.png" id="7_r0gq1"]
 [ext_resource type="PackedScene" uid="uid://dtpqirq54e88b" path="res://scenes/ReelContainer.tscn" id="9_rq5p2"]
-[ext_resource type="Script" uid="uid://c0acu88xkvm77" path="res://src/symbol/reel_container.gd" id="10_ir0cj"]
 [ext_resource type="Texture2D" uid="uid://vy5x5j07x0ao" path="res://assets/sprites/Whoosh1.png" id="11_w0yuy"]
 [ext_resource type="Texture2D" uid="uid://cm8l4nxq634kw" path="res://assets/sprites/Whoosh2.png" id="12_jpwfx"]
 [ext_resource type="Texture2D" uid="uid://cbgvlo5dfjgse" path="res://assets/sprites/Whoosh3.png" id="13_fi5vk"]
@@ -97,7 +96,8 @@ centered = false
 [node name="Background" type="ColorRect" parent="Slot Machine"]
 z_index = -1
 custom_minimum_size = Vector2(1280, 720)
-offset_right = 1919.6677
+offset_left = -1.4962336
+offset_right = 1918.1715
 offset_bottom = 1079.9999
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -120,7 +120,6 @@ autoplay = "idle"
 
 [node name="ReelContainer" parent="." instance=ExtResource("9_rq5p2")]
 position = Vector2(262, 101)
-script = ExtResource("10_ir0cj")
 
 [node name="Spin1" type="AnimatedSprite2D" parent="ReelContainer"]
 position = Vector2(70, 252)
