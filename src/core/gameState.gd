@@ -15,6 +15,9 @@ var active_effects: Array[Effect] = []
 var current_grid: Array = []
 var current_score: Dictionary = {}
 
+func get_player_data() -> PlayerData:
+	return player_data
+
 func activate_all_player_relics() -> void:
 	for relic in player_data.relics:
 		active_relics.append(relic)

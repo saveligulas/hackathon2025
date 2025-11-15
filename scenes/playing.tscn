@@ -320,6 +320,13 @@ icon = ExtResource("9_w0yuy")
 icon_alignment = 1
 expand_icon = true
 
+[node name="Button" type="Button" parent="Slot Machine"]
+offset_left = 1599.4738
+offset_top = 922.7184
+offset_right = 1675.7816
+offset_bottom = 1002.1081
+text = "READY"
+
 [node name="ReelContainer" parent="." instance=ExtResource("9_rq5p2")]
 position = Vector2(262, 101)
 
@@ -362,3 +369,4 @@ autoplay = "default"
 [connection signal="pressed" from="Slot Machine/MarginContainer3/HBoxContainer/Button3" to="." method="_on_respin_button3_pressed"]
 [connection signal="pressed" from="Slot Machine/MarginContainer3/HBoxContainer/Button4" to="." method="_on_respin_button_4_pressed"]
 [connection signal="pressed" from="Slot Machine/MarginContainer3/HBoxContainer/Button5" to="." method="_on_respin_button5_pressed"]
+[connection signal="pressed" from="Slot Machine/Button" to="." method="_on_ready_button_pressed"]

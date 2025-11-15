@@ -49,7 +49,6 @@ func _ready():
 
     if reel_container.get_child_count() == 0:
         push_error("ReelContainer has no children!")
-        
 
 func _on_button_pressed():
     if is_spinning:
@@ -64,30 +63,25 @@ func _on_spin_started():
     reel_container.prepare_all_reels()
     update_ui_labels()
 
+# FIXED: Removed duplicate score calculation
 func _on_spin_completed(result_grid: Array):
-    print("\n=== Spin Result ===")
-
+    print("Spin Result:")
     for i in range(5):
         var column_symbols: Array[Symbol] = []
-
         for row in range(3):
             var sym = result_grid[i][row]
             column_symbols.append(sym)
             if sym:
                 print("Col ", i, " Row ", row, ": ", sym.description, " (", sym.base_points, " pts)")
-
         reel_container.display_reel(i, column_symbols)
-
-    await get_tree().create_timer(1).timeout
+    
+    await get_tree().create_timer(1.0).timeout
     await stagger_reveal()
-
-    # Calculate score using run manager
-    var score_result = run_manager.calculate_score()
-    print("=== Final Score: ", score_result.total_score, " ===")
-    var points = score_result.total_score
-    run_manager.on_score_evaluated(points)
+    
     update_ui_labels()
     is_spinning = false
+    
+    print("Spin completed. Waiting for player to press Ready button...")
 
 func _on_effects_applied(timing: int):
     print("[EFFECT] Effects applied at timing: ", timing)
@@ -133,7 +127,6 @@ func _on_respin_button_4_pressed() -> void:
 func _on_respin_button5_pressed() -> void:
     handle_respin(4)
 
-# UPDATED: Handle respin with animation and stagger
 func handle_respin(reel_index: int):
     if is_spinning:
         print("Spinning, can't respin now")
@@ -145,6 +138,9 @@ func handle_respin(reel_index: int):
     
     is_spinning = true
     print("Starting respin for reel %d" % reel_index)
+    
+    # HIDE THE OLD SYMBOLS FIRST
+    reel_container.hide_reel(reel_index)
     
     # Start the spinner animation for this reel
     spinners[reel_index].show()
@@ -179,7 +175,6 @@ func handle_respin(reel_index: int):
     update_ui_labels()
     is_spinning = false
     print("Respin for reel %d completed" % reel_index)
-    update_ui_labels()
 
 func update_modifiers_ui():
     for child in modifier_list.get_children():
@@ -192,3 +187,32 @@ func update_modifiers_ui():
         label.text = relic.relic_name
         label.add_theme_font_size_override("font_size", 28)
         modifier_list.add_child(label)
+
+func _on_ready_button_pressed() -> void:
+    if is_spinning:
+        print("Can't calculate score while spinning")
+        return
+    
+    if not run_manager.can_calculate_score():
+        print("No spin to calculate!")
+        return
+    
+    print("Calculating final score for this spin...")
+    
+    # Calculate and apply score
+    var score_result = run_manager.calculate_and_apply_score()
+    
+    # Update UI to show the calculation
+    points_label.text = str(score_result.total_score)
+    
+    # Optional: Show a brief animation or feedback
+    await get_tree().create_timer(1.0).timeout
+    
+    # Update all UI labels
+    update_ui_labels()
+    
+    # Check if we've reached the goal
+    if run_manager.get_total_score() >= run_manager.get_current_goal():
+        print("Goal reached!")
+    
+    print("Score applied. Total score: ", run_manager.get_total_score())

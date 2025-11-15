@@ -48,3 +48,11 @@ func start_spinner_for_reel(reel_index: int) -> void:
     spinners[reel_index].show()
     if spinners[reel_index].has_method("play"):
         spinners[reel_index].play("spin")  # Or whatever your spinner animation is called
+        
+# In src/symbol/reel_container.gd
+func hide_reel(column: int):
+    if column < 0 or column >= reel_nodes.size():
+        push_error("Invalid reel index: " + str(column))
+        return
+    
+    reel_nodes[column].hide()
