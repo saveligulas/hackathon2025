@@ -1,4 +1,3 @@
-# src/core/gameManager.gd (FIXED)
 extends Node
 
 enum GamePhase {
@@ -41,6 +40,5 @@ func handle_phase_transition(new_phase: GamePhase, previous_phase: GamePhase):
 
         GamePhase.GAMEOVER:
             print("GamePhase: Change to Game Over")
-
             get_tree().change_scene_to_file("res://scenes/game_over.tscn")
             run_manager.reset()

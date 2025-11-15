@@ -45,7 +45,9 @@ func initialize():
             starting_symbols.shuffle()
             reel.symbols.append_array(starting_symbols)
 
+    game_state.activate_all_player_relics()
     print("RunManager initialized with ", game_state.player_data.reels.size(), " reels")
+    print("RunManager effects ", game_state.active_effects)
 
 func execute_spin() -> Array:
     print("Executing spin...")
@@ -54,11 +56,11 @@ func execute_spin() -> Array:
         GameManager.change_phase(GameManager.GamePhase.GAMEOVER)
         return []
     spins_this_round += 1
+    print("Executing spin...")
 
     # Apply BEFORE_SPIN effects
     apply_effects(Effect.EffectTiming.BEFORE_SPIN)
     emit_signal("effects_applied", Effect.EffectTiming.BEFORE_SPIN)
-
     emit_signal("spin_started")
 
     # Execute the actual spin
@@ -66,13 +68,14 @@ func execute_spin() -> Array:
     var result_grid = slot_machine_manager.result_grid
     game_state.current_grid = result_grid
 
-    # Apply AFTER_SPIN effects (can modify grid)
+    # Apply AFTER_SPIN effects (can modify grid) ← THIS IS CRUCIAL
     result_grid = apply_effects_to_grid(Effect.EffectTiming.AFTER_SPIN, result_grid)
     game_state.current_grid = result_grid
     emit_signal("effects_applied", Effect.EffectTiming.AFTER_SPIN)
 
     emit_signal("spin_completed", result_grid)
     return result_grid
+
 
 func calculate_score() -> Dictionary:
     var score_calculator = GameManager.get_node("ScoreCalculator")

@@ -1,34 +1,49 @@
-# src/core/Effect.gd
+# src/core/effect.gd
 class_name Effect
 extends Resource
 
 enum EffectTiming {
-	BEFORE_SPIN,      # Before symbols are determined
-	AFTER_SPIN,       # After grid is generated, before scoring
-	DURING_SCORING,   # Modify score calculation
-	AFTER_SCORING     # After final score
+	BEFORE_SPIN,
+	AFTER_SPIN,
+	DURING_SCORING,
+	AFTER_SCORING
 }
 
 enum EffectTarget {
-	SYMBOL,           # Affects individual symbol
-	REEL,             # Affects entire reel
-	GRID,             # Affects entire grid
-	SCORE,            # Affects score calculation
-	GLOBAL            # Game-wide effect
+	SYMBOL,    # Affects individual symbol
+	REEL,      # Affects a full reel
+	GRID,      # Affects the entire grid
+	SCORE      # Works globally during scoring
 }
 
 @export var effect_id: String
-@export var effect_name: String
-@export var description: String
-@export var timing: EffectTiming
-@export var target: EffectTarget
-@export var stack_count: int = 1
-@export var is_permanent: bool = false
+@export var timing: EffectTiming = EffectTiming.DURING_SCORING
+@export var target: EffectTarget = EffectTarget.SYMBOL
+@export var description: String = ""
 
-# Override in derived classes
+# NEW: Symbol filtering
+@export var target_symbol_uids: Array[String] = []  # Empty = affects all symbols
+@export var exclude_symbol_uids: Array[String] = []
+
 func apply(context: Dictionary) -> Dictionary:
-	push_error("apply() must be implemented in derived class")
+	# Each subclass implements its logic
 	return context
 
 func can_apply(context: Dictionary) -> bool:
+	# Override in subclasses for conditional effects
+	return true
+
+func matches(symbol: Symbol) -> bool:
+	# Check if this effect applies to the given symbol
+	
+	# If targeting specific symbols
+	if target_symbol_uids.size() > 0:
+		if not symbol.uid in target_symbol_uids:
+			return false
+	
+	# If excluding specific symbols
+	if exclude_symbol_uids.size() > 0:
+		if symbol.uid in exclude_symbol_uids:
+			return false
+	
 	return true

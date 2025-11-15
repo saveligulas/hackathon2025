@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://helsl42snw4t"]
+
+[ext_resource type="Script" uid="uid://dxnnmd5xkba4h" path="res://src/relics/golden_calculator_relic.gd" id="1_podwe"]
+
+[node name="GoldenCalculatorRelic" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_podwe")
