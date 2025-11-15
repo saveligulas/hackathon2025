@@ -7,8 +7,6 @@ extends Node2D
 
 @onready var color_rect: ColorRect = $ColorRect
 @onready var label: Label = $ColorRect/Label
-
-# Optional: Add Sprite2D for when designer provides sprites
 @onready var sprite: Sprite2D = $Sprite2D if has_node("Sprite2D") else null
 
 func _ready():
