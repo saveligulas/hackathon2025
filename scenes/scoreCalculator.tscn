@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://cwbgackfb74xc"]
+[gd_scene load_steps=2 format=3 uid="uid://cwbgackfb74xc"]
+
+[ext_resource type="Script" uid="uid://dntbip43vj61" path="res://src/score/score_calculator.gd" id="1_sufob"]
 
 [node name="ScoreCalculator" type="Node"]
+script = ExtResource("1_sufob")
