@@ -95,6 +95,8 @@ func update_ui_labels():
     score_label.text = str(run_manager.get_total_score())
     round_label.text = str(run_manager.get_current_round())
     spins_left.text = str(run_manager.MAX_SPINS_PER_ROUND - run_manager.spins_this_round)
+    update_modifiers_ui()
+
 
 func _on_goal_reached():
     await get_tree().create_timer(5).timeout
@@ -103,3 +105,15 @@ func _on_goal_reached():
 
 func _on_round_advanced():
     update_ui_labels()
+
+func update_modifiers_ui():
+    for child in modifier_list.get_children():
+        child.queue_free()
+    run_manager = GameManager.get_node("RunManager")
+    var active_relics = run_manager.game_state.active_relics
+
+    for relic in active_relics:
+        var label = Label.new()
+        label.text = relic.relic_name
+        label.add_theme_font_size_override("font_size", 28)
+        modifier_list.add_child(label)
