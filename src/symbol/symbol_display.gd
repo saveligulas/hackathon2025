@@ -28,23 +28,8 @@ func update_display():
     if "texture" in symbol_data and symbol_data.texture != null:
         if sprite:
             sprite.texture = symbol_data.texture
+            sprite.scale = Vector2(0.5, 0.5)
+            sprite.translate(Vector2(70, 78))
             sprite.show()
-        if color_rect:
-            color_rect.hide()
     else:
-        if sprite:
-            sprite.hide()
-        if color_rect:
-            color_rect.show()
-
-            match symbol_data.points:
-                1: color_rect.color = Color.RED
-                2: color_rect.color = Color.BLUE
-                3: color_rect.color = Color.GREEN
-                5: color_rect.color = Color.YELLOW
-                10: color_rect.color = Color.PURPLE
-                _: color_rect.color = Color.WHITE
-
-            label.text = str(symbol_data.points)
-            label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-            label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+        print("Symbol missing texture")
