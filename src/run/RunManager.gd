@@ -5,30 +5,19 @@ extends Node
 var slot_machine_manager: SlotMachineManager
 
 func initialize():
-	slot_machine_manager = SlotMachineManager.new()
+    slot_machine_manager = SlotMachineManager.new()
 
-	if starting_symbols.size() < 1:
-		print("Creating test symbols...")
+    if player_data == null:
+        player_data = PlayerData.new()
+        player_data.initialize()
 
-		for i in 6:
-			var test_symbol = Symbol.new()
-			test_symbol.points = [1, 2, 3, 5, 10, 15][i]
-			test_symbol.mult = 1
-			test_symbol.description = "Test Symbol " + str(i)
-			starting_symbols.append(test_symbol)
-
-	if player_data == null:
-		player_data = PlayerData.new()
-		player_data.initialize()
-
-		for reel in player_data.reels:
-			for j in 5:
-				var random_symbol = starting_symbols.pick_random().duplicate() as Symbol
-				reel.symbols.append(random_symbol)
+        for reel in player_data.reels:
+            starting_symbols.shuffle()
+            reel.symbols.append_array(starting_symbols)
 
 
 func reset():
-	pass  # TODO: Implement reset logic
+    pass  # TODO: Implement reset logic
 
 func _ready():
-	print("I LOADED RUNMANAGER")
+    print("I LOADED RUNMANAGER")
