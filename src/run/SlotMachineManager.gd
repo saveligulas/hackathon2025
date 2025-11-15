@@ -4,14 +4,20 @@ extends RefCounted
 var result_grid: Array = []  # 5x3 grid
 
 func _init():
-	# Initialize 5x3 grid
-	result_grid.resize(5)
-	for i in range(5):
-		result_grid[i] = []
-		result_grid[i].resize(3)
+    result_grid.resize(5)
+    for i in range(5):
+        result_grid[i] = []
+        result_grid[i].resize(3)
 
 func spin(player_data: PlayerData):
-	for column in range(5):
-		for row in range(3):
-			if player_data.reels[column].symbols.size() > 0:
-				result_grid[column][row] = player_data.reels[column].symbols.pick_random()
+    for col in range(5):
+        var reel_symbols = player_data.reels[col].symbols
+        var reel_size = reel_symbols.size()
+        if reel_size == 0:
+            continue
+
+        var start_index = randi() % reel_size
+
+        for row in range(3):
+            var index = (start_index + row) % reel_size
+            result_grid[col][row] = reel_symbols[index]
