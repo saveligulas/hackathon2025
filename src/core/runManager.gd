@@ -8,6 +8,12 @@ var slot_machine_manager: SlotMachineManager
 signal spin_started
 signal spin_completed(result_grid: Array)
 signal effects_applied(timing: int)
+signal goal_reached
+signal round_advanced
+
+var current_goal: int = 20
+var current_round: int = 1
+var total_score: int = 0
 
 func _ready():
     print("RunManager loaded")
@@ -114,3 +120,27 @@ func reset():
     game_state = GameState.new()
     load_starting_symbols()
     initialize()
+
+func on_score_evaluated(score: int):
+    total_score += score
+    if total_score >= current_goal:
+        emit_signal("goal_reached")
+        advance_round()
+
+func advance_round():
+    current_round += 1
+    emit_signal("round_advanced")
+
+func reset_round_for_goal():
+    @warning_ignore("narrowing_conversion")
+    current_goal = int(current_goal * 1.5)
+    total_score = 0
+
+func get_current_goal():
+    return current_goal
+
+func get_current_round():
+    return current_round
+
+func get_total_score():
+    return total_score

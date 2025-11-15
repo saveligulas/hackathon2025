@@ -35,6 +35,9 @@ func _ready():
     run_manager.spin_started.connect(_on_spin_started)
     run_manager.spin_completed.connect(_on_spin_completed)
     run_manager.effects_applied.connect(_on_effects_applied)
+    run_manager.goal_reached.connect(_on_goal_reached)
+    run_manager.round_advanced.connect(_on_round_advanced)
+    update_ui_labels()
 
     if reel_container.get_child_count() == 0:
         push_error("ReelContainer has no children!")
@@ -71,7 +74,9 @@ func _on_spin_completed(result_grid: Array):
     # Calculate score using run manager
     var score_result = run_manager.calculate_score()
     print("=== Final Score: ", score_result.total_score, " ===")
-
+    var points = score_result.total_score
+    run_manager.on_score_evaluated(points)
+    update_ui_labels()
     is_spinning = false
 
 func _on_effects_applied(timing: int):
@@ -82,3 +87,16 @@ func stagger_reveal():
         spinners[i].hide()
         reel_container.reveal_column(i)
         await get_tree().create_timer(0.15).timeout
+
+func update_ui_labels():
+    goal_label.text = str(run_manager.get_current_goal())
+    score_label.text = str(run_manager.get_total_score())
+    round_label.text = str(run_manager.get_current_round())
+
+func _on_goal_reached():
+    await get_tree().create_timer(5).timeout
+    GameManager.change_phase(GameManager.GamePhase.SHOP)
+    run_manager.reset_round_for_goal()
+
+func _on_round_advanced():
+    update_ui_labels()

@@ -1,13 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://etprqw7bt31"]
+[gd_scene load_steps=2 format=3 uid="uid://etprqw7bt31"]
 
 [ext_resource type="Script" uid="uid://nnmv1hjvrx76" path="res://src/core/runManager.gd" id="1_pga5b"]
-[ext_resource type="Script" uid="uid://cyn0irsyos1xh" path="res://src/core/symbol.gd" id="2_j0hkk"]
-[ext_resource type="Resource" uid="uid://equduurenbby" path="res://symbols/cash_symbol.tres" id="3_i4x4l"]
-[ext_resource type="Resource" uid="uid://brb3f4d3icgcm" path="res://symbols/eye_symbol.tres" id="3_ot76d"]
-[ext_resource type="Resource" uid="uid://mupifixuiqxu" path="res://symbols/fingerprint_symbol.tres" id="4_i4x4l"]
-[ext_resource type="Resource" uid="uid://d0b2yg7f8yji3" path="res://symbols/palm_symbol.tres" id="5_kedkk"]
-[ext_resource type="Resource" uid="uid://hdpobk4w5wsg" path="res://symbols/man_symbol.tres" id="6_ot76d"]
 
 [node name="RunManager" type="Node2D"]
 script = ExtResource("1_pga5b")
-starting_symbols = Array[ExtResource("2_j0hkk")]([ExtResource("3_ot76d"), ExtResource("6_ot76d"), ExtResource("3_i4x4l"), ExtResource("5_kedkk"), ExtResource("4_i4x4l")])
