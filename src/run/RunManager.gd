@@ -1,4 +1,3 @@
-class_name RunManagerClass
 extends Node
 
 @export var starting_symbols: Array[Symbol] = []

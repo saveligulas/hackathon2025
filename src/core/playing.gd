@@ -47,9 +47,9 @@ func spin_reels():
 				print("Col ", i, " Row ", row, ": ", sym.description, " (", sym.points, " pts)")
 		
 		reel_container.display_reel(i, column_symbols)
-	_on_reel_spin_complete()
+	on_reel_spin_complete()
 
-func _on_reel_spin_complete():
+func on_reel_spin_complete():
 	await get_tree().create_timer(0.1).timeout
 	on_spin_finished()
 	is_spinning = false
