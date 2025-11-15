@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://86y103knbn0s"]
+[gd_scene load_steps=12 format=3 uid="uid://86y103knbn0s"]
 
 [ext_resource type="Script" uid="uid://dl3sssariprb8" path="res://src/core/playing.gd" id="1_03hel"]
 [ext_resource type="Texture2D" uid="uid://qytk8bn4x312" path="res://assets/sprites/MachineFrame.png" id="1_43x5a"]
@@ -8,7 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dflhwijhy3g2a" path="res://assets/sprites/Lever4.png" id="5_ir0cj"]
 [ext_resource type="Texture2D" uid="uid://yvk70glwk2fq" path="res://assets/sprites/Lever5.png" id="6_oysb3"]
 [ext_resource type="Texture2D" uid="uid://bb15uj8ntxecw" path="res://assets/sprites/Lever6.png" id="7_r0gq1"]
-[ext_resource type="PackedScene" uid="uid://b3d6l75va8u2d" path="res://scenes/ReelContainer.tscn" id="9_rq5p2"]
+[ext_resource type="PackedScene" uid="uid://n6gskauypk71" path="res://scenes/reelContainer.tscn" id="9_rq5p2"]
+[ext_resource type="Script" uid="uid://c0acu88xkvm77" path="res://src/symbol/reel_container.gd" id="10_ir0cj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0bln8"]
 animations = [{
@@ -80,5 +81,6 @@ animation = &"pull"
 autoplay = "idle"
 
 [node name="ReelContainer" parent="." instance=ExtResource("9_rq5p2")]
+script = ExtResource("10_ir0cj")
 
 [connection signal="pressed" from="Slot Machine/Button" to="." method="_on_button_pressed"]
