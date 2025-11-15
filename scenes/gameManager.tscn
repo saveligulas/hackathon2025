@@ -1,14 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://3q562bptvde1"]
+[gd_scene load_steps=11 format=3 uid="uid://3q562bptvde1"]
 
 [ext_resource type="Script" uid="uid://cljcr5ci5arug" path="res://src/core/gameManager.gd" id="1_83k1r"]
 [ext_resource type="PackedScene" uid="uid://etprqw7bt31" path="res://scenes/runManager.tscn" id="2_bb4tu"]
-[ext_resource type="PackedScene" uid="uid://cwbgackfb74xc" path="res://scenes/scoreCalculator.tscn" id="3_x7fn8"]
+[ext_resource type="Script" uid="uid://cyn0irsyos1xh" path="res://src/core/symbol.gd" id="3_h4e4n"]
+[ext_resource type="PackedScene" path="res://scenes/scoreCalculator.tscn" id="3_x7fn8"]
+[ext_resource type="Resource" uid="uid://equduurenbby" path="res://symbols/cash_symbol.tres" id="4_20mr7"]
 [ext_resource type="Script" uid="uid://dntbip43vj61" path="res://src/score/score_calculator.gd" id="4_bbeu6"]
+[ext_resource type="Resource" uid="uid://mupifixuiqxu" path="res://symbols/fingerprint_symbol.tres" id="5_iskxh"]
+[ext_resource type="Resource" uid="uid://d0b2yg7f8yji3" path="res://symbols/palm_symbol.tres" id="6_v1g5y"]
+[ext_resource type="Resource" uid="uid://hdpobk4w5wsg" path="res://symbols/man_symbol.tres" id="7_espd7"]
+[ext_resource type="Resource" uid="uid://brb3f4d3icgcm" path="res://symbols/eye_symbol.tres" id="8_lt20t"]
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_83k1r")
 
 [node name="RunManager" parent="." instance=ExtResource("2_bb4tu")]
+starting_symbols = Array[ExtResource("3_h4e4n")]([ExtResource("4_20mr7"), ExtResource("5_iskxh"), ExtResource("6_v1g5y"), ExtResource("7_espd7"), ExtResource("8_lt20t")])
 
 [node name="ScoreCalculator" parent="." instance=ExtResource("3_x7fn8")]
 script = ExtResource("4_bbeu6")
