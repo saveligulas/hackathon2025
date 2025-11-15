@@ -238,7 +238,6 @@ layout_mode = 2
 [node name="Mod1" type="Label" parent="Slot Machine/MarginContainer/Information/ModifierContainer/Modifier"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
-text = "Double Trouble"
 text_overrun_behavior = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="Slot Machine"]

@@ -11,7 +11,7 @@ signal effects_applied(timing: int)
 signal goal_reached
 signal round_advanced
 
-var current_goal: int = 20
+var current_goal: int = 10
 var current_round: int = 1
 var total_score: int = 0
 var spins_this_round: int = 0
@@ -33,10 +33,19 @@ func load_starting_symbols():
 	print("Loaded ", starting_symbols.size(), " starting symbols")
 
 func initialize():
+<<<<<<< HEAD
 	game_state = GameState.new()
 	slot_machine_manager = SlotMachineManager.new()
 	spins_this_round = 0
 	total_score = 0
+=======
+    game_state = GameState.new()
+    slot_machine_manager = SlotMachineManager.new()
+    spins_this_round = 0
+    total_score = 0
+    current_goal = 10
+    current_round = 1
+>>>>>>> b58afb9edba69f6ab69913547c68068bb03cc4bb
 
 	if game_state.player_data == null:
 		game_state.player_data = PlayerData.new()
