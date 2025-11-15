@@ -13,6 +13,7 @@ func _ready():
         pos.position = Vector2(0, i * 178)
         add_child(pos)
         symbol_positions.append(pos)
+    hide()
 
 func spin(_duration: float, final_symbols: Array[Symbol]):
     set_result(final_symbols)
@@ -20,6 +21,12 @@ func spin(_duration: float, final_symbols: Array[Symbol]):
 
 func display_symbols(symbols: Array[Symbol]):
     set_result(symbols)
+
+func reveal():
+    show()
+
+func prepare_for_spin():
+    hide()
 
 func set_result(symbols: Array[Symbol]):
     for pos in symbol_positions:

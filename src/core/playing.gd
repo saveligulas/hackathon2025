@@ -2,7 +2,13 @@ extends Node2D
 
 @onready var lever: AnimatedSprite2D = $"Slot Machine/Button/Lever"
 @onready var reel_container: Node2D = $ReelContainer
-
+@onready var spinners := [
+    $ReelContainer/Spin1,
+    $ReelContainer/Spin2,
+    $ReelContainer/Spin3,
+    $ReelContainer/Spin4,
+    $ReelContainer/Spin5
+]
 var is_spinning: bool = false
 
 func _ready():
@@ -20,6 +26,8 @@ func _on_button_pressed():
 
 func spin_reels():
     is_spinning = true
+    reel_container.start_spinners()
+    reel_container.prepare_all_reels()
 
     if not GameManager.has_node("RunManager"):
         push_error("RunManager not found")
@@ -47,15 +55,25 @@ func spin_reels():
                 print("Col ", i, " Row ", row, ": ", sym.description, " (", sym.points, " pts)")
 
         reel_container.display_reel(i, column_symbols)
-    _on_reel_spin_complete()
 
-func _on_reel_spin_complete():
-    await get_tree().create_timer(0.1).timeout
-    on_spin_finished()
+    spin_finished()
+
+func spin_finished():
     is_spinning = false
 
-func on_spin_finished():
+    await get_tree().create_timer(1).timeout
+
+    await stagger_reveal()
+
     var run_manager = GameManager.get_node("RunManager")
     var result_grid = run_manager.slot_machine_manager.result_grid
     var score_calculator = GameManager.get_node("ScoreCalculator")
     print(score_calculator.calculate_score(result_grid))
+
+func stagger_reveal():
+    for i in range(spinners.size()):
+        spinners[i].hide()
+
+        reel_container.reveal_column(i)
+
+        await get_tree().create_timer(0.15).timeout

@@ -22,6 +22,7 @@ func update_display():
 
     color_rect.size.x = 140
     color_rect.size.y = 157
+    color_rect.color = Color(0.028, 0.028, 0.309, 1.0)
 
     if "texture" in symbol_data and symbol_data.texture != null:
         if sprite:

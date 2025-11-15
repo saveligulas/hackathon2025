@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://86y103knbn0s"]
+[gd_scene load_steps=20 format=3 uid="uid://86y103knbn0s"]
 
 [ext_resource type="Script" uid="uid://dl3sssariprb8" path="res://src/core/playing.gd" id="1_03hel"]
 [ext_resource type="Texture2D" uid="uid://qytk8bn4x312" path="res://assets/sprites/MachineFrame.png" id="1_43x5a"]
@@ -8,8 +8,15 @@
 [ext_resource type="Texture2D" uid="uid://dflhwijhy3g2a" path="res://assets/sprites/Lever4.png" id="5_ir0cj"]
 [ext_resource type="Texture2D" uid="uid://yvk70glwk2fq" path="res://assets/sprites/Lever5.png" id="6_oysb3"]
 [ext_resource type="Texture2D" uid="uid://bb15uj8ntxecw" path="res://assets/sprites/Lever6.png" id="7_r0gq1"]
-[ext_resource type="PackedScene" uid="uid://bvdx1mkjcn8b4" path="res://scenes/reelContainer.tscn" id="9_rq5p2"]
+[ext_resource type="PackedScene" uid="uid://dtpqirq54e88b" path="res://scenes/reelContainer.tscn" id="9_rq5p2"]
 [ext_resource type="Script" uid="uid://c0acu88xkvm77" path="res://src/symbol/reel_container.gd" id="10_ir0cj"]
+[ext_resource type="Texture2D" uid="uid://vy5x5j07x0ao" path="res://assets/sprites/Whoosh1.png" id="11_w0yuy"]
+[ext_resource type="Texture2D" uid="uid://cm8l4nxq634kw" path="res://assets/sprites/Whoosh2.png" id="12_jpwfx"]
+[ext_resource type="Texture2D" uid="uid://cbgvlo5dfjgse" path="res://assets/sprites/Whoosh3.png" id="13_fi5vk"]
+[ext_resource type="Texture2D" uid="uid://d3d5e0s1pgqc3" path="res://assets/sprites/Whoosh4.png" id="14_ibrup"]
+[ext_resource type="Texture2D" uid="uid://cbdeudyvhrlpj" path="res://assets/sprites/Whoosh5.png" id="15_5ne1d"]
+[ext_resource type="Texture2D" uid="uid://43yj5lxx1byr" path="res://assets/sprites/Whoosh6.png" id="16_b3cha"]
+[ext_resource type="Texture2D" uid="uid://bhospxgtbg784" path="res://assets/sprites/Whoosh7.png" id="17_yxpij"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0bln8"]
 animations = [{
@@ -46,6 +53,35 @@ animations = [{
 "loop": false,
 "name": &"pull",
 "speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wv4xg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_w0yuy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_jpwfx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_fi5vk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ibrup")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_5ne1d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_b3cha")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_yxpij")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
 }]
 
 [node name="Playing" type="Node2D"]
@@ -85,5 +121,38 @@ autoplay = "idle"
 [node name="ReelContainer" parent="." instance=ExtResource("9_rq5p2")]
 position = Vector2(262, 101)
 script = ExtResource("10_ir0cj")
+
+[node name="Spin1" type="AnimatedSprite2D" parent="ReelContainer"]
+position = Vector2(70, 252)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_wv4xg")
+autoplay = "default"
+
+[node name="Spin2" type="AnimatedSprite2D" parent="ReelContainer"]
+position = Vector2(220, 245)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_wv4xg")
+autoplay = "default"
+frame_progress = 0.6511121
+
+[node name="Spin3" type="AnimatedSprite2D" parent="ReelContainer"]
+position = Vector2(380, 252)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_wv4xg")
+autoplay = "default"
+frame_progress = 0.6511121
+
+[node name="Spin4" type="AnimatedSprite2D" parent="ReelContainer"]
+position = Vector2(535, 255)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_wv4xg")
+autoplay = "default"
+frame_progress = 0.6511121
+
+[node name="Spin5" type="AnimatedSprite2D" parent="ReelContainer"]
+position = Vector2(688, 253)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_wv4xg")
+autoplay = "default"
 
 [connection signal="pressed" from="Slot Machine/Button" to="." method="_on_button_pressed"]
