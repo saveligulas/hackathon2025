@@ -39,4 +39,3 @@ func reveal_column(column: int):
 func start_spinners():
     for spinner in spinners:
         spinner.show()
-        spinner.play("spin")

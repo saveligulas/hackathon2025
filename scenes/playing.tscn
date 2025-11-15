@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://86y103knbn0s"]
+[gd_scene load_steps=19 format=3 uid="uid://86y103knbn0s"]
 
 [ext_resource type="Script" uid="uid://dl3sssariprb8" path="res://src/core/playing.gd" id="1_03hel"]
 [ext_resource type="Texture2D" uid="uid://qytk8bn4x312" path="res://assets/sprites/MachineFrame.png" id="1_43x5a"]
@@ -8,8 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dflhwijhy3g2a" path="res://assets/sprites/Lever4.png" id="5_ir0cj"]
 [ext_resource type="Texture2D" uid="uid://yvk70glwk2fq" path="res://assets/sprites/Lever5.png" id="6_oysb3"]
 [ext_resource type="Texture2D" uid="uid://bb15uj8ntxecw" path="res://assets/sprites/Lever6.png" id="7_r0gq1"]
-[ext_resource type="PackedScene" uid="uid://dtpqirq54e88b" path="res://scenes/reelContainer.tscn" id="9_rq5p2"]
-[ext_resource type="Script" uid="uid://c0acu88xkvm77" path="res://src/symbol/reel_container.gd" id="10_ir0cj"]
+[ext_resource type="PackedScene" uid="uid://dtpqirq54e88b" path="res://scenes/ReelContainer.tscn" id="9_rq5p2"]
 [ext_resource type="Texture2D" uid="uid://vy5x5j07x0ao" path="res://assets/sprites/Whoosh1.png" id="11_w0yuy"]
 [ext_resource type="Texture2D" uid="uid://cm8l4nxq634kw" path="res://assets/sprites/Whoosh2.png" id="12_jpwfx"]
 [ext_resource type="Texture2D" uid="uid://cbgvlo5dfjgse" path="res://assets/sprites/Whoosh3.png" id="13_fi5vk"]
@@ -86,8 +85,6 @@ animations = [{
 
 [node name="Playing" type="Node2D"]
 script = ExtResource("1_03hel")
-metadata/_edit_vertical_guides_ = [262.0, 1022.0]
-metadata/_edit_horizontal_guides_ = [101.0]
 
 [node name="Slot Machine" type="Sprite2D" parent="."]
 scale = Vector2(0.66834486, 0.66759264)
@@ -97,13 +94,14 @@ centered = false
 [node name="Background" type="ColorRect" parent="Slot Machine"]
 z_index = -1
 custom_minimum_size = Vector2(1280, 720)
-offset_right = 1919.6677
+offset_left = -1.4962336
+offset_right = 1918.1715
 offset_bottom = 1079.9999
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.09541174, 0.0019765585, 0.09649698, 1)
 
-[node name="Button" type="Button" parent="Slot Machine"]
+[node name="Lever" type="Button" parent="Slot Machine"]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 1669.7966
 offset_top = 263.63382
@@ -112,15 +110,166 @@ offset_bottom = 1079.9999
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Lever" type="AnimatedSprite2D" parent="Slot Machine/Button"]
+[node name="Lever" type="AnimatedSprite2D" parent="Slot Machine/Lever"]
 position = Vector2(64.33801, 408.9319)
 sprite_frames = SubResource("SpriteFrames_0bln8")
 animation = &"pull"
 autoplay = "idle"
 
+[node name="MarginContainer" type="MarginContainer" parent="Slot Machine"]
+offset_left = -1.4962336
+offset_top = 131.81691
+offset_right = 380.0
+offset_bottom = 1079.9999
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="Information" type="VBoxContainer" parent="Slot Machine/MarginContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="Goal" type="HBoxContainer" parent="Slot Machine/MarginContainer/Information"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Slot Machine/MarginContainer/Information/Goal"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Goal"
+
+[node name="Value" type="Label" parent="Slot Machine/MarginContainer/Information/Goal"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "100"
+horizontal_alignment = 2
+
+[node name="Score" type="HBoxContainer" parent="Slot Machine/MarginContainer/Information"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Slot Machine/MarginContainer/Information/Score"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Score"
+
+[node name="Value" type="Label" parent="Slot Machine/MarginContainer/Information/Score"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "0"
+horizontal_alignment = 2
+
+[node name="Calculation" type="HBoxContainer" parent="Slot Machine/MarginContainer/Information"]
+layout_mode = 2
+
+[node name="Points" type="Label" parent="Slot Machine/MarginContainer/Information/Calculation"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 2
+
+[node name="x" type="Label" parent="Slot Machine/MarginContainer/Information/Calculation"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "x"
+horizontal_alignment = 1
+
+[node name="Mult" type="Label" parent="Slot Machine/MarginContainer/Information/Calculation"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Slot Machine/MarginContainer/Information"]
+layout_mode = 2
+
+[node name="ReelSpin" type="VBoxContainer" parent="Slot Machine/MarginContainer/Information/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="Slot Machine/MarginContainer/Information/HBoxContainer/ReelSpin"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Reel-Spin"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="Slot Machine/MarginContainer/Information/HBoxContainer/ReelSpin"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "3"
+horizontal_alignment = 1
+
+[node name="Round" type="VBoxContainer" parent="Slot Machine/MarginContainer/Information/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="Slot Machine/MarginContainer/Information/HBoxContainer/Round"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Round"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="Slot Machine/MarginContainer/Information/HBoxContainer/Round"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "1"
+horizontal_alignment = 1
+
+[node name="ModifierContainer" type="VBoxContainer" parent="Slot Machine/MarginContainer/Information"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="Slot Machine/MarginContainer/Information/ModifierContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Modifier"
+horizontal_alignment = 1
+
+[node name="Modifier" type="VBoxContainer" parent="Slot Machine/MarginContainer/Information/ModifierContainer"]
+layout_mode = 2
+
+[node name="Mod1" type="Label" parent="Slot Machine/MarginContainer/Information/ModifierContainer/Modifier"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Double Trouble"
+text_overrun_behavior = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="Slot Machine"]
+offset_left = 1554.5867
+offset_top = 142.30234
+offset_right = 1936.0829
+offset_bottom = 286.30234
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="Spins" type="VBoxContainer" parent="Slot Machine/MarginContainer2"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Slot Machine/MarginContainer2/Spins"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Spins"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="Slot Machine/MarginContainer2/Spins"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "5"
+horizontal_alignment = 1
+
 [node name="ReelContainer" parent="." instance=ExtResource("9_rq5p2")]
 position = Vector2(262, 101)
-script = ExtResource("10_ir0cj")
 
 [node name="Spin1" type="AnimatedSprite2D" parent="ReelContainer"]
 position = Vector2(70, 252)
@@ -155,4 +304,4 @@ scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_wv4xg")
 autoplay = "default"
 
-[connection signal="pressed" from="Slot Machine/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Slot Machine/Lever" to="." method="_on_button_pressed"]

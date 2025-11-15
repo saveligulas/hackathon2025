@@ -14,7 +14,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_play_pressed() -> void:
-    GameManager.current_state = GameManager.GameState.PLAYING
+    GameManager.change_phase(GameManager.GamePhase.PLAYING)
 
 
 func _on_quit_pressed() -> void:

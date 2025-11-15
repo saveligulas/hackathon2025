@@ -1,39 +1,44 @@
 extends Node
 
-enum GameState {MENU, PLAYING, SHOP, GAME_OVER}
-signal game_state_changed
-@onready var run_manager = $RunManager
+enum GamePhase {
+    MENU,
+    PLAYING,
+    SHOP,
+    GAMEOVER
+}
 
-@export
-var current_state := GameState.MENU:
-    set(value):
-        var previous_state = current_state
-        current_state = value
-        _handle_state_change(value, previous_state)
+signal game_phase_changed
+
+@onready var run_manager: Node = $RunManager
+
+var current_phase: GamePhase = GamePhase.MENU
 
 func _ready() -> void:
     print("Game Manager initialized")
 
-func _process(_delta: float) -> void:
-    pass
+func change_phase(new_phase: GamePhase) -> void:
+    var previous_phase = current_phase
+    current_phase = new_phase
+    game_phase_changed.emit(new_phase)
+    handle_phase_transition(new_phase, previous_phase)
 
-func _handle_state_change(new_state, previous_state):
-    game_state_changed.emit(new_state)
-    _handle_state_transition(new_state, previous_state)
-
-func _handle_state_transition(new_state, previous_state):
-    match new_state:
-        GameState.MENU:
-            print("[GameState] Change to Menu")
+func handle_phase_transition(new_phase: GamePhase, previous_phase: GamePhase):
+    match new_phase:
+        GamePhase.MENU:
+            print("GamePhase: Change to Menu")
             get_tree().change_scene_to_file("res://scenes/mainMenu.tscn")
-        GameState.PLAYING:
-            print("[GameState] Change to Playing")
-            if (previous_state == GameState.MENU):
-                run_manager.initialize()
+
+        GamePhase.PLAYING:
+            print("GamePhase: Change to Playing")
+            if previous_phase == GamePhase.MENU:
+                run_manager.initialize()  # ← THIS WAS MISSING!
             get_tree().change_scene_to_file("res://scenes/playing.tscn")
-        GameState.SHOP:
-            print("[GameState] Change to Shop")
+
+        GamePhase.SHOP:
+            print("GamePhase: Change to Shop")
             get_tree().change_scene_to_file("res://scenes/shop.tscn")
-        GameState.GAME_OVER:
-            print("[GameState] Change to Game Over")
-            run_manager.Reset()
+
+        GamePhase.GAMEOVER:
+            print("GamePhase: Change to Game Over")
+            get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+            run_manager.reset()
