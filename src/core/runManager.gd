@@ -203,6 +203,26 @@ func apply_effects_to_score(timing: int, score_data: Dictionary) -> Dictionary:
                     modified_score = result.score
 
     return modified_score
+    
+
+func preview_score() -> Dictionary:
+    if game_state.current_grid.is_empty():
+        return {"total_score": 0, "matched_patterns": []}
+    
+    # Use the same calculation logic, but don't mark as calculated
+    var score_calculator = GameManager.get_node("ScoreCalculator")
+    
+    var score_result = score_calculator.calculate_score_with_state(
+        game_state.current_grid,
+        game_state
+    )
+    
+    # Apply AFTER_SCORING effects (same as normal flow)
+    score_result = apply_effects_to_score(Effect.EffectTiming.AFTER_SCORING, score_result)
+    
+    # Don't modify game_state.current_score or any state - just return
+    return score_result
+
 
 func reset():
     game_state = GameState.new()

@@ -78,10 +78,20 @@ func _on_spin_completed(result_grid: Array):
     await get_tree().create_timer(1.0).timeout
     await stagger_reveal()
     
+    # NEW: Update score preview in UI
+    update_score_preview()
+    
     update_ui_labels()
     is_spinning = false
     
     print("Spin completed. Waiting for player to press Ready button...")
+
+# NEW: Function to update score preview
+func update_score_preview() -> void:
+    var preview = run_manager.preview_score()
+    
+    points_label.text = str(preview.points)  # Use preview.points instead
+    mult_label.text = str(preview.mult)
 
 func _on_effects_applied(timing: int):
     print("[EFFECT] Effects applied at timing: ", timing)
@@ -139,23 +149,15 @@ func handle_respin(reel_index: int):
     is_spinning = true
     print("Starting respin for reel %d" % reel_index)
     
-    # HIDE THE OLD SYMBOLS FIRST
     reel_container.hide_reel(reel_index)
-    
-    # Start the spinner animation for this reel
     spinners[reel_index].show()
     reel_container.start_spinner_for_reel(reel_index)
     
-    # Brief delay for spinner to show
     await get_tree().create_timer(0.3).timeout
-    
-    # Call respin in run manager
     var new_grid = run_manager.respin_reel(reel_index)
     
-    # Wait for spinner animation to complete
     await get_tree().create_timer(0.8).timeout
     
-    # Display the new reel symbols
     var column_symbols: Array[Symbol] = []
     for row in range(3):
         var sym = new_grid[reel_index][row]
@@ -165,16 +167,18 @@ func handle_respin(reel_index: int):
     
     reel_container.display_reel(reel_index, column_symbols)
     
-    # Stagger reveal just this reel
     spinners[reel_index].hide()
     reel_container.reveal_column(reel_index)
     
     await get_tree().create_timer(0.5).timeout
     
-    # Update UI
+    # NEW: Update preview after respin
+    update_score_preview()
+    
     update_ui_labels()
     is_spinning = false
     print("Respin for reel %d completed" % reel_index)
+
 
 func update_modifiers_ui():
     for child in modifier_list.get_children():
