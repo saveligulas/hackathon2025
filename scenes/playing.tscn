@@ -65,14 +65,14 @@ offset_right = 1919.6677
 offset_bottom = 1079.9999
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color(0.8453288, 0.8453288, 0.84532875, 1)
+color = Color(0.09541174, 0.0019765585, 0.09649698, 1)
 
 [node name="Button" type="Button" parent="Slot Machine"]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 1669.7966
 offset_top = 263.63382
 offset_right = 1799.969
-offset_bottom = 471.84464
+offset_bottom = 1079.9999
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
