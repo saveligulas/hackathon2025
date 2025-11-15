@@ -19,7 +19,6 @@ func _on_button_pressed():
 	spin_reels()
 
 func spin_reels():
-<<<<<<< HEAD
 	is_spinning = true
 
 	if not GameManager.has_node("RunManager"):
@@ -55,44 +54,8 @@ func _on_reel_spin_complete():
 	on_spin_finished()
 	is_spinning = false
 	
-=======
-    is_spinning = true
-
-    if not GameManager.has_node("RunManager"):
-        push_error("RunManager not found")
-        is_spinning = false
-        return
-
-    var run_manager = GameManager.get_node("RunManager")
-
-    if run_manager.slot_machine_manager == null:
-        push_error("SlotMachineManager not initialized")
-        is_spinning = false
-        return
-
-    run_manager.slot_machine_manager.spin(run_manager.player_data)
-
-    print("\nSpin Result")
-
-    for i in range(5):
-        var column_symbols: Array[Symbol] = []
-
-        for row in range(3):
-            var sym = run_manager.slot_machine_manager.result_grid[i][row]
-            column_symbols.append(sym)
-            if sym:
-                print("Col ", i, " Row ", row, ": ", sym.description, " (", sym.points, " pts)")
-
-        reel_container.display_reel(i, column_symbols)
-    _on_reel_spin_complete()
-
-func _on_reel_spin_complete():
-    await get_tree().create_timer(0.1).timeout
-    on_spin_finished()
-    is_spinning = false
-
->>>>>>> 5e28b107941178d1cb9bb9b53cd3c99810773d18
 func on_spin_finished():
 	var run_manager = GameManager.get_node("RunManager")
 	var result_grid = run_manager.slot_machine_manager.result_grid
-	# TODO: Scoring System with ScoringCalculator Maybe in Global or RunManager
+	var score_calculator = GameManager.get_node("ScoreCalculator")
+	print(score_calculator.calculate_score(result_grid))

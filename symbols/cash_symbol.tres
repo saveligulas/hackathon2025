@@ -6,4 +6,5 @@
 
 [resource]
 script = ExtResource("2_e7k3x")
+uid = "currency"
 texture = ExtResource("3_8al3u")

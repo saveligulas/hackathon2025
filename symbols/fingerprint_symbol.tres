@@ -6,4 +6,5 @@
 
 [resource]
 script = ExtResource("2_gcplx")
+uid = "fingerprint"
 texture = ExtResource("3_mpvo7")

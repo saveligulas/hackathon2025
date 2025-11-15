@@ -6,4 +6,5 @@
 
 [resource]
 script = ExtResource("2_aqshn")
+uid = "palm"
 texture = ExtResource("3_ifbnb")

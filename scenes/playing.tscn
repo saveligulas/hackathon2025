@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dflhwijhy3g2a" path="res://assets/sprites/Lever4.png" id="5_ir0cj"]
 [ext_resource type="Texture2D" uid="uid://yvk70glwk2fq" path="res://assets/sprites/Lever5.png" id="6_oysb3"]
 [ext_resource type="Texture2D" uid="uid://bb15uj8ntxecw" path="res://assets/sprites/Lever6.png" id="7_r0gq1"]
-[ext_resource type="PackedScene" path="res://scenes/reelContainer.tscn" id="9_rq5p2"]
+[ext_resource type="PackedScene" uid="uid://bvdx1mkjcn8b4" path="res://scenes/reelContainer.tscn" id="9_rq5p2"]
 [ext_resource type="Script" uid="uid://c0acu88xkvm77" path="res://src/symbol/reel_container.gd" id="10_ir0cj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0bln8"]
