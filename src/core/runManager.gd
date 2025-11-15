@@ -29,6 +29,7 @@ func load_starting_symbols():
 
 func initialize():
 	game_state = GameState.new()
+	
 	slot_machine_manager = SlotMachineManager.new()
 	
 	if game_state.player_data == null:
@@ -38,8 +39,10 @@ func initialize():
 		for reel in game_state.player_data.reels:
 			starting_symbols.shuffle()
 			reel.symbols.append_array(starting_symbols)
-	
+	#TODO: remove                        
+	game_state.activate_all_player_relics()
 	print("RunManager initialized with ", game_state.player_data.reels.size(), " reels")
+	print("RunManager effects ", game_state.active_effects)
 
 func execute_spin() -> Array:
 	print("Executing spin...")

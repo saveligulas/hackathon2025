@@ -1,4 +1,4 @@
-# src/score/score_calculator.gd (TEMPORARY FIX)
+# src/score/score_calculator.gd (REFACTORED WITH EFFECTS)
 extends Node
 
 var patterns: Array[Pattern]
@@ -6,9 +6,8 @@ var patterns: Array[Pattern]
 func _ready():
 	patterns = PatternLoader.get_patterns()
 
-# New method that accepts game state
+# Main scoring method with game state
 func calculate_score_with_state(slot_grid_result: Array, game_state) -> Dictionary:
-	# If game_state is null, use legacy method
 	if game_state == null:
 		return calculate_score(slot_grid_result)
 	
@@ -20,7 +19,11 @@ func calculate_score_with_state(slot_grid_result: Array, game_state) -> Dictiona
 		var pattern_match_result = check_pattern_match(slot_grid_result, pattern)
 		
 		if pattern_match_result.matched:
-			var pattern_score = calculate_pattern_score(pattern, pattern_match_result)
+			var pattern_score = calculate_pattern_score_with_effects(
+				pattern, 
+				pattern_match_result, 
+				game_state
+			)
 			total_score += pattern_score
 			
 			matched_patterns.append({
@@ -29,13 +32,17 @@ func calculate_score_with_state(slot_grid_result: Array, game_state) -> Dictiona
 				"score": pattern_score
 			})
 	
-	# Free-flowing lines
+	# Free-flowing lines (if no patterns matched)
 	if matched_patterns.is_empty():
 		var free_flow_results = check_free_flowing_lines(slot_grid_result)
 		
 		for result in free_flow_results:
 			if result.matched:
-				var line_score = calculate_free_flow_score(result, slot_grid_result)
+				var line_score = calculate_free_flow_score_with_effects(
+					result, 
+					slot_grid_result, 
+					game_state
+				)
 				total_score += line_score
 				
 				matched_patterns.append({
@@ -50,9 +57,116 @@ func calculate_score_with_state(slot_grid_result: Array, game_state) -> Dictiona
 		"matched_patterns": matched_patterns
 	}
 
-# Keep your existing methods exactly as they are
+# Legacy method (no effects)
 func calculate_score(slot_grid_result: Array) -> Dictionary:
 	return calculate_score_with_state(slot_grid_result, null)
+
+# ============================================
+# CENTRALIZED EFFECT APPLICATION
+# ============================================
+
+# Calculate pattern score WITH effects applied
+func calculate_pattern_score_with_effects(
+	pattern: Pattern, 
+	match_result: Dictionary, 
+	game_state
+) -> int:
+	var points = 0
+	var mult = 0
+	
+	# Apply effects to each symbol in the pattern
+	for pattern_value in match_result.fulfilled_lines:
+		var match_data = match_result.symbol_matches[pattern_value]
+		var symbol: Symbol = match_data.symbol
+		
+		# Apply symbol-level effects (from relic effects or symbol upgrades)
+		var symbol_context = apply_symbol_effects(symbol, game_state)
+		
+		points += symbol_context.points
+		mult += symbol_context.mult
+	
+	# Apply global score effects (score multipliers, etc.)
+	var score_context = apply_global_score_effects(points, mult, game_state)
+	
+	return score_context.points * score_context.mult
+
+# Calculate free-flow score WITH effects applied
+func calculate_free_flow_score_with_effects(
+	match_result: Dictionary, 
+	slot_grid_result: Array, 
+	game_state
+) -> int:
+	var points = 0
+	var mult = 0
+	var symbol: Symbol = match_result.symbol
+	
+	# Apply effects to each position of the flowing line
+	for position in match_result.positions:
+		var symbol_context = apply_symbol_effects(symbol, game_state)
+		points += symbol_context.points
+		mult += symbol_context.mult
+	
+	# Apply global score effects
+	var score_context = apply_global_score_effects(points, mult, game_state)
+	
+	var final_score = (score_context.points * score_context.mult) / 2
+	return final_score
+
+# HELPER: Apply all symbol-targeting effects to a single symbol
+func apply_symbol_effects(symbol: Symbol, game_state) -> Dictionary:
+	var context = {
+		"points": symbol.base_points,
+		"mult": symbol.base_mult,
+		"symbol": symbol
+	}
+	
+	# Null checks only - no .has() calls
+	if game_state == null:
+		return context
+	
+	if game_state.active_effects == null:
+		return context
+		
+	if game_state.active_effects.is_empty():
+		return context
+	
+	# Apply all DURING_SCORING + SYMBOL-targeting effects
+	for effect in game_state.active_effects:
+		if effect.timing == Effect.EffectTiming.DURING_SCORING:
+			if effect.target == Effect.EffectTarget.SYMBOL:
+				if effect.matches(symbol):
+					context = effect.apply(context)
+	
+	return context
+
+# HELPER: Apply all global score-targeting effects
+func apply_global_score_effects(points: int, mult: int, game_state) -> Dictionary:
+	var context = {
+		"points": points,
+		"mult": mult
+	}
+	
+	# Null checks only - no .has() calls
+	if game_state == null:
+		return context
+	
+	if game_state.active_effects == null:
+		return context
+		
+	if game_state.active_effects.is_empty():
+		return context
+	
+	# Apply all DURING_SCORING + SCORE-targeting effects
+	for effect in game_state.active_effects:
+		if effect.timing == Effect.EffectTiming.DURING_SCORING:
+			if effect.target == Effect.EffectTarget.SCORE:
+				context = effect.apply(context)
+	
+	return context
+
+# ============================================
+# LEGACY SCORING (NO EFFECTS)
+# ============================================
 
 func calculate_pattern_score(pattern: Pattern, match_result: Dictionary) -> int:
 	var points = 0
@@ -61,7 +175,6 @@ func calculate_pattern_score(pattern: Pattern, match_result: Dictionary) -> int:
 	for pattern_value in match_result.fulfilled_lines:
 		var match_data = match_result.symbol_matches[pattern_value]
 		var symbol: Symbol = match_data.symbol
-		
 		points += symbol.base_points
 		mult += symbol.base_mult
 	
@@ -79,9 +192,11 @@ func calculate_free_flow_score(match_result: Dictionary, slot_grid_result: Array
 	var final_score = (points * mult) / 2
 	return final_score
 
-# Keep ALL your existing pattern matching methods unchanged
+# ============================================
+# PATTERN MATCHING (UNCHANGED)
+# ============================================
+
 func check_pattern_match(slot_grid_result: Array, pattern: Pattern) -> Dictionary:
-	# ... your existing code ...
 	var symbol_matches = {}
 	var required_symbol_count = pattern.get_pattern_symbol_count()
 	

@@ -1,20 +1,28 @@
-# src/core/Relic.gd
+# src/relics/Relic.gd
 class_name Relic
-extends Resource
+extends Control
 
-@export var relic_id: String
-@export var relic_name: String
-@export var description: String
+enum Rarity {
+	COMMON,
+	UNCOMMON,
+	RARE,
+	EPIC,
+	LEGENDARY
+}
+
+@export var relic_id: String = ""
+@export var relic_name: String = ""
+@export var description: String = ""
 @export var icon: Texture2D
-@export var rarity: String = "common"
-
-# Effects this relic provides
+@export var rarity: Rarity = Rarity.COMMON
 @export var relic_effects: Array[Effect] = []
 
-func activate(game_state: GameState) -> void:
+func activate(game_state):
 	for effect in relic_effects:
 		game_state.add_active_effect(effect)
+	print("Activated", relic_name)
 
-func deactivate(game_state: GameState) -> void:
+func deactivate(game_state):
 	for effect in relic_effects:
 		game_state.remove_active_effect(effect.effect_id)
+	print("Deactivated", relic_name)

@@ -15,6 +15,13 @@ var active_effects: Array[Effect] = []
 var current_grid: Array = []
 var current_score: Dictionary = {}
 
+func activate_all_player_relics() -> void:
+	for relic in player_data.relics:
+		active_relics.append(relic)
+		for effect in relic.relic_effects:
+			active_effects.append(effect)
+		
+
 func add_active_effect(effect: Effect) -> void:
 	# Check if effect stacks
 	var existing = active_effects.filter(func(e): return e.effect_id == effect.effect_id)
