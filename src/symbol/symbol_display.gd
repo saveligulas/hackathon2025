@@ -18,10 +18,13 @@ func _ready():
 func update_display():
     if not is_node_ready():
         return
-    
+
     if symbol_data == null:
-        return
-    
+         return
+
+    color_rect.size.x = 140
+    color_rect.size.y = 157
+
     if "texture" in symbol_data and symbol_data.texture != null:
         if sprite:
             sprite.texture = symbol_data.texture
@@ -33,7 +36,7 @@ func update_display():
             sprite.hide()
         if color_rect:
             color_rect.show()
-            
+
             match symbol_data.points:
                 1: color_rect.color = Color.RED
                 2: color_rect.color = Color.BLUE
@@ -41,7 +44,7 @@ func update_display():
                 5: color_rect.color = Color.YELLOW
                 10: color_rect.color = Color.PURPLE
                 _: color_rect.color = Color.WHITE
-            
+
             label.text = str(symbol_data.points)
             label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
             label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER

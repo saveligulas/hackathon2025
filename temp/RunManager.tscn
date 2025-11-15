@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxhe0kewjfomt"]
-
-[ext_resource type="Script" uid="uid://bqrk3xmcrghx2" path="res://src/run/RunManager.gd" id="1_406ei"]
-
-[node name="RunManager" type="Node2D"]
-script = ExtResource("1_406ei")
