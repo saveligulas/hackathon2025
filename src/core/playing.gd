@@ -1,7 +1,7 @@
 # src/core/playing.gd (COMPLETE REPLACEMENT)
 extends Node2D
 
-@onready var lever: AnimatedSprite2D = $"Slot Machine/Button/Lever"
+@onready var lever: AnimatedSprite2D = $"Slot Machine/Lever/Lever"
 @onready var reel_container: Node2D = $ReelContainer
 @onready var spinners := [
     $ReelContainer/Spin1,
