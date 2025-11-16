@@ -8,7 +8,7 @@ extends Control
 func _ready() -> void:
 	main_menu_theme.set_stream(AudioManager.sound_main_theme)
 	main_menu_theme.play()
-	pass # Replace with function body.
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

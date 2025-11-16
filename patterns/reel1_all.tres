@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Pattern" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://src/core/effect.gd" id="1_gbqfk"]
+[ext_resource type="Script" path="res://src/effects/addPointEffect.gd" id="2_xksl2"]
+[ext_resource type="Script" path="res://src/effects/addMultEffect.gd" id="3_a871k"]
+[ext_resource type="Script" path="res://src/score/pattern.gd" id="4_je2j5"]
+
+[sub_resource type="Resource" id="Resource_l4kyi"]
+script = ExtResource("2_xksl2")
+points_to_add = 25
+effect_id = "add_points_25"
+description = "+25 points"
+
+[sub_resource type="Resource" id="Resource_8o7kq"]
+script = ExtResource("3_a871k")
+effect_id = "add_mult_1"
+description = "+1 mult"
+
+[resource]
+script = ExtResource("4_je2j5")
+pattern_id = "reel1_all"
+pattern_name = "Reel 1 Full"
+description = "All symbols in reel 1 only"
+cells = PackedInt32Array(1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+pattern_effects = Array[ExtResource("1_gbqfk")]([SubResource("Resource_l4kyi"), SubResource("Resource_8o7kq")])

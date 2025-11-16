@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Pattern" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://src/core/effect.gd" id="1_omuy4"]
+[ext_resource type="Script" path="res://src/effects/addPointEffect.gd" id="2_rrle0"]
+[ext_resource type="Script" path="res://src/effects/addMultEffect.gd" id="3_fa8y8"]
+[ext_resource type="Script" path="res://src/score/pattern.gd" id="4_bm2fa"]
+
+[sub_resource type="Resource" id="Resource_rcjdd"]
+script = ExtResource("2_rrle0")
+points_to_add = 40
+effect_id = "add_points_40"
+description = "+40 points"
+
+[sub_resource type="Resource" id="Resource_8fajs"]
+script = ExtResource("3_fa8y8")
+mult_to_add = 2
+effect_id = "add_mult_2"
+description = "+2 mult"
+
+[resource]
+script = ExtResource("4_bm2fa")
+pattern_id = "reverse_v_shape"
+pattern_name = "V-Shape Up"
+description = "Reverse V-shaped pattern (bottom→middle→top→middle→bottom)"
+cells = PackedInt32Array(0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+pattern_effects = Array[ExtResource("1_omuy4")]([SubResource("Resource_rcjdd"), SubResource("Resource_8fajs")])

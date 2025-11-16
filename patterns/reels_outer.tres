@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Pattern" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://src/core/effect.gd" id="1_jy6ow"]
+[ext_resource type="Script" path="res://src/effects/addPointEffect.gd" id="2_lag86"]
+[ext_resource type="Script" path="res://src/effects/addMultEffect.gd" id="3_ll4g3"]
+[ext_resource type="Script" path="res://src/score/pattern.gd" id="4_qw0lw"]
+
+[sub_resource type="Resource" id="Resource_pwfyw"]
+script = ExtResource("2_lag86")
+points_to_add = 35
+effect_id = "add_points_35"
+description = "+35 points"
+
+[sub_resource type="Resource" id="Resource_5v1an"]
+script = ExtResource("3_ll4g3")
+mult_to_add = 2
+effect_id = "add_mult_2"
+description = "+2 mult"
+
+[resource]
+script = ExtResource("4_qw0lw")
+pattern_id = "reels_outer"
+pattern_name = "Outer Reels"
+description = "Only first and last reel"
+cells = PackedInt32Array(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
+pattern_effects = Array[ExtResource("1_jy6ow")]([SubResource("Resource_pwfyw"), SubResource("Resource_5v1an")])

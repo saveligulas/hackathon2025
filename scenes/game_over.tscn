@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dshh66ykc4x6m"]
+[gd_scene load_steps=3 format=3 uid="uid://dshh66ykc4x6m"]
 
 [ext_resource type="Script" uid="uid://col0dybwb6ckr" path="res://src/core/game_over.gd" id="1_xeevv"]
+[ext_resource type="Texture2D" uid="uid://bgeojx0d75qo5" path="res://assets/sprites/MainMenuCover.png" id="2_wqhvx"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -10,16 +11,32 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xeevv")
-metadata/_edit_vertical_guides_ = [640.0]
 
-[node name="Label" type="Label" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 156
+texture = ExtResource("2_wqhvx")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.0
+offset_top = 11.0
+offset_right = 151.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.16078432, 0.39215687, 1)
+theme_override_font_sizes/font_size = 46
 text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -31,10 +48,11 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -167.0
-offset_top = -148.0
-offset_right = 167.25806
-offset_bottom = -82.0
+offset_left = 339.0
+offset_top = -86.0
+offset_right = 631.0
+offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_font_sizes/font_size = 24
 text = "Back to Main Menu"

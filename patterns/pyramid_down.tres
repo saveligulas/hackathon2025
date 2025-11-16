@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Pattern" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://src/core/effect.gd" id="1_r6eh7"]
+[ext_resource type="Script" path="res://src/effects/addPointEffect.gd" id="2_yxn3t"]
+[ext_resource type="Script" path="res://src/effects/addMultEffect.gd" id="3_spfdv"]
+[ext_resource type="Script" path="res://src/score/pattern.gd" id="4_ej2b8"]
+
+[sub_resource type="Resource" id="Resource_ou2h2"]
+script = ExtResource("2_yxn3t")
+points_to_add = 50
+effect_id = "add_points_50"
+description = "+50 points"
+
+[sub_resource type="Resource" id="Resource_8cf3o"]
+script = ExtResource("3_spfdv")
+mult_to_add = 3
+effect_id = "add_mult_3"
+description = "+3 mult"
+
+[resource]
+script = ExtResource("4_ej2b8")
+pattern_id = "pyramid_down"
+pattern_name = "Pyramid Down"
+description = "Pyramid expanding downward"
+cells = PackedInt32Array(1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1)
+pattern_effects = Array[ExtResource("1_r6eh7")]([SubResource("Resource_ou2h2"), SubResource("Resource_8cf3o")])

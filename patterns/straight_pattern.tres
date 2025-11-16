@@ -1,6 +1,0 @@
-[gd_resource type="Resource" script_class="Pattern" load_steps=2 format=3 uid="uid://by6m5x7uno1g2"]
-
-[ext_resource type="Script" uid="uid://bwk5a6hlgyjly" path="res://src/score/pattern.gd" id="1_gx060"]
-
-[resource]
-script = ExtResource("1_gx060")

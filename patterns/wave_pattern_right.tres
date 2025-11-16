@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Pattern" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://src/core/effect.gd" id="1_q4b68"]
+[ext_resource type="Script" path="res://src/effects/addPointEffect.gd" id="2_gper3"]
+[ext_resource type="Script" path="res://src/effects/addMultEffect.gd" id="3_8qj7g"]
+[ext_resource type="Script" path="res://src/score/pattern.gd" id="4_n4uk2"]
+
+[sub_resource type="Resource" id="Resource_22a6k"]
+script = ExtResource("2_gper3")
+points_to_add = 35
+effect_id = "add_points_35"
+description = "+35 points"
+
+[sub_resource type="Resource" id="Resource_4tjdg"]
+script = ExtResource("3_8qj7g")
+mult_to_add = 2
+effect_id = "add_mult_2"
+description = "+2 mult"
+
+[resource]
+script = ExtResource("4_n4uk2")
+pattern_id = "wave_pattern_right"
+pattern_name = "Wave Right"
+description = "Wave pattern flowing left"
+cells = PackedInt32Array(0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0)
+pattern_effects = Array[ExtResource("1_q4b68")]([SubResource("Resource_22a6k"), SubResource("Resource_4tjdg")])

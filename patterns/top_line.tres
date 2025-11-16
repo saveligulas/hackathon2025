@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Pattern" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://src/core/effect.gd" id="1_a48a8"]
+[ext_resource type="Script" path="res://src/effects/addPointEffect.gd" id="2_pm27k"]
+[ext_resource type="Script" path="res://src/effects/addMultEffect.gd" id="3_iydr7"]
+[ext_resource type="Script" path="res://src/score/pattern.gd" id="4_0dnkd"]
+
+[sub_resource type="Resource" id="Resource_k51ch"]
+script = ExtResource("2_pm27k")
+points_to_add = 25
+effect_id = "add_points_25"
+description = "+25 points"
+
+[sub_resource type="Resource" id="Resource_ocqjl"]
+script = ExtResource("3_iydr7")
+effect_id = "add_mult_1"
+description = "+1 mult"
+
+[resource]
+script = ExtResource("4_0dnkd")
+pattern_id = "top_line"
+pattern_name = "Top Line"
+description = "Match symbols across the top row"
+cells = PackedInt32Array(1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0)
+pattern_effects = Array[ExtResource("1_a48a8")]([SubResource("Resource_k51ch"), SubResource("Resource_ocqjl")])

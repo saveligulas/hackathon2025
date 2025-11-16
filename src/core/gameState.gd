@@ -15,6 +15,9 @@ var active_effects: Array[Effect] = []
 var current_grid: Array = []
 var current_score: Dictionary = {}
 
+func get_player_data() -> PlayerData:
+    return player_data
+
 func activate_all_player_relics() -> void:
     for relic in player_data.relics:
         active_relics.append(relic)
@@ -23,12 +26,16 @@ func activate_all_player_relics() -> void:
 
 
 func add_active_effect(effect: Effect) -> void:
-    # Check if effect stacks
+    # Check if effect already exists (don't stack duplicate effects)
     var existing = active_effects.filter(func(e): return e.effect_id == effect.effect_id)
+    
     if existing.size() > 0:
-        existing[0].stack_count += 1
+        # REMOVED: existing[0].stack_count += 1
+        # Just don't add duplicates
+        print("Effect %s already active, skipping duplicate" % effect.effect_id)
     else:
         active_effects.append(effect)
+        print("Added effect: %s" % effect.effect_id)
 
 func remove_active_effect(effect_id: String) -> void:
     active_effects = active_effects.filter(func(e): return e.effect_id != effect_id)
@@ -39,6 +46,7 @@ func get_effects_by_timing(timing: Effect.EffectTiming) -> Array[Effect]:
 func equip_relic(relic: Relic) -> void:
     active_relics.append(relic)
     relic.activate(self)
+    player_data.set_relic(relic)
 
 func unequip_relic(relic_id: String) -> void:
     var relic = active_relics.filter(func(r): return r.relic_id == relic_id)

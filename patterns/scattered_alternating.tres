@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Pattern" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://src/core/effect.gd" id="1_pthvd"]
+[ext_resource type="Script" path="res://src/effects/addPointEffect.gd" id="2_aivry"]
+[ext_resource type="Script" path="res://src/effects/addMultEffect.gd" id="3_1mdo8"]
+[ext_resource type="Script" path="res://src/score/pattern.gd" id="4_bqf8o"]
+
+[sub_resource type="Resource" id="Resource_elucr"]
+script = ExtResource("2_aivry")
+points_to_add = 30
+effect_id = "add_points_30"
+description = "+30 points"
+
+[sub_resource type="Resource" id="Resource_gexsn"]
+script = ExtResource("3_1mdo8")
+effect_id = "add_mult_1"
+description = "+1 mult"
+
+[resource]
+script = ExtResource("4_bqf8o")
+pattern_id = "scattered_alternating"
+pattern_name = "Alternating Rows"
+description = "Alternating pattern across rows"
+cells = PackedInt32Array(1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0)
+pattern_effects = Array[ExtResource("1_pthvd")]([SubResource("Resource_elucr"), SubResource("Resource_gexsn")])

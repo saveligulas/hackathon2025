@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Pattern" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://src/core/effect.gd" id="1_lotrf"]
+[ext_resource type="Script" path="res://src/effects/addPointEffect.gd" id="2_tkcmr"]
+[ext_resource type="Script" path="res://src/effects/addMultEffect.gd" id="3_b0c0g"]
+[ext_resource type="Script" path="res://src/score/pattern.gd" id="4_5dkuu"]
+
+[sub_resource type="Resource" id="Resource_0fpg8"]
+script = ExtResource("2_tkcmr")
+points_to_add = 35
+effect_id = "add_points_35"
+description = "+35 points"
+
+[sub_resource type="Resource" id="Resource_w0x68"]
+script = ExtResource("3_b0c0g")
+mult_to_add = 2
+effect_id = "add_mult_2"
+description = "+2 mult"
+
+[resource]
+script = ExtResource("4_5dkuu")
+pattern_id = "diagonal_tlbr"
+pattern_name = "Diagonal TL→BR"
+description = "Diagonal from top-left to bottom-right"
+cells = PackedInt32Array(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0)
+pattern_effects = Array[ExtResource("1_lotrf")]([SubResource("Resource_0fpg8"), SubResource("Resource_w0x68")])

@@ -16,17 +16,17 @@ var symbol_effects: Array[Effect] = []
 
 # Calculate effective stats (base + modifiers)
 func get_effective_points(context: Dictionary = {}) -> int:
-    var total = base_points
-    # For now, just return base (effects come later)
-    return total
+	var total = base_points
+	# For now, just return base (effects come later)
+	return total
 
 func get_effective_mult(context: Dictionary = {}) -> int:
-    var total = base_mult
-    # For now, just return base (effects come later)
-    return total
+	var total = base_mult
+	# For now, just return base (effects come later)
+	return total
 
 func add_effect(effect: Effect) -> void:
-    symbol_effects.append(effect)
+	symbol_effects.append(effect)
 
 func remove_effect(effect_id: String) -> void:
-    symbol_effects = symbol_effects.filter(func(e): return e.effect_id != effect_id)
+	symbol_effects = symbol_effects.filter(func(e): return e.effect_id != effect_id)
