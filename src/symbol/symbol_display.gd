@@ -41,10 +41,8 @@ func update_highlight() -> void:
 		# GREEN GLOW EFFECT - MODIFY THESE VALUES FOR STRENGTH
 		
 		# OVERLAY OPACITY - Change from 0.4 to higher (max 1.0 for fully opaque)
-		highlight_overlay.color = Color(0.0, 1.0, 0.0, 0.8)  # CHANGED: 0.4 → 0.8 (STRONGER)
+		color_rect.color = Color(0.78, 0.086, 0.491, 0.8)  # CHANGED: 0.4 → 0.8 (STRONGER)
 		
-		# BRIGHTNESS MULTIPLIER - Change values to brighten more
-		color_rect.self_modulate = Color(1.5, 1.7, 1.5, 1.0)  # CHANGED: 1.3, 1.5, 1.3 → 1.5, 1.7, 1.5 (BRIGHTER)
 	else:
 		# NORMAL STATE
 		highlight_overlay.color = Color.TRANSPARENT
