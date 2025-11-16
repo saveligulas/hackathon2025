@@ -117,7 +117,7 @@ func update_ui_labels():
 
 
 func _on_goal_reached():
-    await get_tree().create_timer(5).timeout
+    await get_tree().create_timer(3).timeout
     GameManager.change_phase(GameManager.GamePhase.SHOP)
     run_manager.reset_round_for_goal()
     AudioManager.global_audio_player.set_stream(AudioManager.sound_victory)
