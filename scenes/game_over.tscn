@@ -1,7 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://dshh66ykc4x6m"]
+[gd_scene load_steps=10 format=3 uid="uid://dshh66ykc4x6m"]
 
 [ext_resource type="Script" uid="uid://col0dybwb6ckr" path="res://src/core/game_over.gd" id="1_xeevv"]
-[ext_resource type="Texture2D" uid="uid://bgeojx0d75qo5" path="res://assets/sprites/MainMenuCover.png" id="2_wqhvx"]
+[ext_resource type="Texture2D" uid="uid://vr8cv40pjmtf" path="res://assets/sprites/slutmachinecover1.png" id="2_2jtsn"]
+[ext_resource type="Texture2D" uid="uid://shhjykweg1fh" path="res://assets/sprites/slutmachinecover2.png" id="3_8bugq"]
+[ext_resource type="Texture2D" uid="uid://clxejxfa576dj" path="res://assets/sprites/slutmachinecover3.png" id="4_wawo4"]
+[ext_resource type="Texture2D" uid="uid://mbtv8pyy7s2n" path="res://assets/sprites/slutmachinecover4.png" id="5_56v3a"]
+[ext_resource type="Texture2D" uid="uid://bprie8txswwh8" path="res://assets/sprites/slutmachinecover5.png" id="6_o57t2"]
+[ext_resource type="Texture2D" uid="uid://ccikd7yckm6ml" path="res://assets/sprites/slutmachinecover6.png" id="7_uq3qu"]
+[ext_resource type="Texture2D" uid="uid://sr5mx6rk277c" path="res://assets/sprites/slutmachinecover7.png" id="8_0p6qk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s4bmq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2jtsn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8bugq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wawo4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_56v3a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o57t2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_uq3qu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_0p6qk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -12,15 +47,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xeevv")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_wqhvx")
-expand_mode = 2
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.40000004, 0.4)
+sprite_frames = SubResource("SpriteFrames_s4bmq")
+autoplay = "default"
+centered = false
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

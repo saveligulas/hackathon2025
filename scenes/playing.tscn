@@ -107,7 +107,7 @@ self_modulate = Color(1, 1, 1, 0)
 offset_left = 1669.7966
 offset_top = 263.63382
 offset_right = 1799.969
-offset_bottom = 1079.9999
+offset_bottom = 861.3036
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -321,10 +321,11 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Button" type="Button" parent="Slot Machine"]
-offset_left = 1599.4738
-offset_top = 922.7184
-offset_right = 1675.7816
-offset_bottom = 1002.1081
+offset_left = 1589.0002
+offset_top = 958.66846
+offset_right = 1882.2618
+offset_bottom = 1063.5226
+theme_override_font_sizes/font_size = 56
 text = "READY"
 
 [node name="Button" type="Button" parent="Slot Machine/Button"]
