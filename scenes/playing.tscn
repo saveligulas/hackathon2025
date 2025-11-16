@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://86y103knbn0s"]
+[gd_scene load_steps=23 format=3 uid="uid://86y103knbn0s"]
 
 [ext_resource type="Script" uid="uid://dl3sssariprb8" path="res://src/core/playing.gd" id="1_03hel"]
 [ext_resource type="Texture2D" uid="uid://qytk8bn4x312" path="res://assets/sprites/MachineFrame.png" id="1_43x5a"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cbdeudyvhrlpj" path="res://assets/sprites/Whoosh5.png" id="15_5ne1d"]
 [ext_resource type="Texture2D" uid="uid://43yj5lxx1byr" path="res://assets/sprites/Whoosh6.png" id="16_b3cha"]
 [ext_resource type="Texture2D" uid="uid://bhospxgtbg784" path="res://assets/sprites/Whoosh7.png" id="17_yxpij"]
+[ext_resource type="Texture2D" uid="uid://bkklw34htimth" path="res://assets/sprites/Coin/Coin_Sheet.png" id="18_jpwfx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0bln8"]
 animations = [{
@@ -83,6 +84,28 @@ animations = [{
 "name": &"default",
 "speed": 12.0
 }]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fi5vk"]
+particles_animation = true
+particles_anim_h_frames = 12
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ibrup"]
+particle_flag_disable_z = true
+angle_min = -16.69999
+angle_max = 54.10001
+angular_velocity_min = -466.13
+angular_velocity_max = 416.18997
+radial_velocity_min = -17.340021
+radial_velocity_max = 734.1
+gravity = Vector3(0, 250, 0)
+radial_accel_min = -100.0
+radial_accel_max = 99.99999
+tangential_accel_min = -100.0
+tangential_accel_max = 99.99999
+anim_speed_min = 2.45
+anim_speed_max = 3.8899999
 
 [node name="Playing" type="Node2D"]
 script = ExtResource("1_03hel")
@@ -377,6 +400,58 @@ position = Vector2(688, 253)
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_wv4xg")
 autoplay = "default"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ReelContainer"]
+material = SubResource("CanvasItemMaterial_fi5vk")
+position = Vector2(70, 0)
+rotation = 3.1415927
+emitting = false
+amount = 50
+texture = ExtResource("18_jpwfx")
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ibrup")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ReelContainer"]
+z_index = 1
+material = SubResource("CanvasItemMaterial_fi5vk")
+position = Vector2(220, 0)
+rotation = 3.1415927
+emitting = false
+amount = 50
+texture = ExtResource("18_jpwfx")
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ibrup")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="ReelContainer"]
+material = SubResource("CanvasItemMaterial_fi5vk")
+position = Vector2(380, 0)
+rotation = 3.1415927
+emitting = false
+amount = 50
+texture = ExtResource("18_jpwfx")
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ibrup")
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="ReelContainer"]
+z_index = -1
+material = SubResource("CanvasItemMaterial_fi5vk")
+position = Vector2(520, 0)
+rotation = 3.1415927
+emitting = false
+amount = 50
+texture = ExtResource("18_jpwfx")
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ibrup")
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="ReelContainer"]
+material = SubResource("CanvasItemMaterial_fi5vk")
+position = Vector2(690, 0)
+rotation = 3.1415927
+emitting = false
+amount = 50
+texture = ExtResource("18_jpwfx")
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ibrup")
 
 [node name="MachineNoises" type="AudioStreamPlayer" parent="."]
 max_polyphony = 5

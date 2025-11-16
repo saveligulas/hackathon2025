@@ -9,6 +9,7 @@ var patterns: Array[Pattern]
 func _ready():
 	patterns = PatternLoader.get_patterns()
 
+signal pattern_completed(bool)
 # ============================================================================
 # MAIN CALCULATION FUNCTIONS
 # ============================================================================

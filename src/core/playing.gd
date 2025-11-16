@@ -1,4 +1,12 @@
 extends Node2D
+@onready var particle_emitters:= [
+    $ReelContainer/GPUParticles2D,
+    $ReelContainer/GPUParticles2D2,
+    $ReelContainer/GPUParticles2D3,
+    $ReelContainer/GPUParticles2D4,
+    $ReelContainer/GPUParticles2D5
+    
+]
 
 @onready var respin_buttons := [
     $"Slot Machine/MarginContainer3/HBoxContainer/Button",
@@ -215,9 +223,19 @@ func _on_ready_button_pressed() -> void:
 
     # Calculate and apply score
     var score_result = run_manager.calculate_and_apply_score()
+    for emitter in particle_emitters:
+        emitter.emitting = true
+        AudioManager.global_audio_player.set_stream(AudioManager.sound_payout)
+        AudioManager.global_audio_player.play()
+    await get_tree().create_timer(2.65).timeout
+
+    for emitter in particle_emitters:
+        emitter.emitting = false
+        pass
 
     # Optional: Show a brief animation or feedback
     await get_tree().create_timer(1.0).timeout
+    # INSERT EMITTER TRUE
 
     # Update all UI labels
     update_ui_labels()
