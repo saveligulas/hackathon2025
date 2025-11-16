@@ -98,6 +98,7 @@ func stagger_reveal():
 		spinners[i].hide()
 		reel_container.reveal_column(i)
 		machine_noises.set_stream(AudioManager.sound_reel_stop)
+		machine_noises.play()
 		await get_tree().create_timer(0.15).timeout
 
 func update_ui_labels():
@@ -112,7 +113,9 @@ func _on_goal_reached():
 	await get_tree().create_timer(5).timeout
 	GameManager.change_phase(GameManager.GamePhase.SHOP)
 	run_manager.reset_round_for_goal()
-
+	AudioManager.global_audio_player.set_stream(AudioManager.sound_victory)
+	AudioManager.global_audio_player.play()
+	
 func _on_round_advanced():
 	update_ui_labels()
 
