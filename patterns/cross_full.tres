@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Pattern" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://src/core/effect.gd" id="1_jbsyy"]
+[ext_resource type="Script" path="res://src/effects/addPointEffect.gd" id="2_ypjp2"]
+[ext_resource type="Script" path="res://src/effects/addMultEffect.gd" id="3_vqxe0"]
+[ext_resource type="Script" path="res://src/score/pattern.gd" id="4_3wuw3"]
+
+[sub_resource type="Resource" id="Resource_icax4"]
+script = ExtResource("2_ypjp2")
+points_to_add = 60
+effect_id = "add_points_60"
+description = "+60 points"
+
+[sub_resource type="Resource" id="Resource_hjdn7"]
+script = ExtResource("3_vqxe0")
+mult_to_add = 4
+effect_id = "add_mult_4"
+description = "+4 mult"
+
+[resource]
+script = ExtResource("4_3wuw3")
+pattern_id = "cross_full"
+pattern_name = "Full Cross"
+description = "Full cross pattern - all positions connected"
+cells = PackedInt32Array(1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1)
+pattern_effects = Array[ExtResource("1_jbsyy")]([SubResource("Resource_icax4"), SubResource("Resource_hjdn7")])

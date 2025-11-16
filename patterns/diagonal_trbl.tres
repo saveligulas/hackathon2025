@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Pattern" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://src/core/effect.gd" id="1_qjtyo"]
+[ext_resource type="Script" path="res://src/effects/addPointEffect.gd" id="2_rxgi5"]
+[ext_resource type="Script" path="res://src/effects/addMultEffect.gd" id="3_3lflv"]
+[ext_resource type="Script" path="res://src/score/pattern.gd" id="4_s7vlr"]
+
+[sub_resource type="Resource" id="Resource_26h6q"]
+script = ExtResource("2_rxgi5")
+points_to_add = 35
+effect_id = "add_points_35"
+description = "+35 points"
+
+[sub_resource type="Resource" id="Resource_4tp8d"]
+script = ExtResource("3_3lflv")
+mult_to_add = 2
+effect_id = "add_mult_2"
+description = "+2 mult"
+
+[resource]
+script = ExtResource("4_s7vlr")
+pattern_id = "diagonal_trbl"
+pattern_name = "Diagonal TR→BL"
+description = "Diagonal from top-right to bottom-left"
+cells = PackedInt32Array(0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1)
+pattern_effects = Array[ExtResource("1_qjtyo")]([SubResource("Resource_26h6q"), SubResource("Resource_4tp8d")])

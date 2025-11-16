@@ -63,7 +63,6 @@ func _on_spin_started():
 	reel_container.prepare_all_reels()
 	update_ui_labels()
 
-# FIXED: Removed duplicate score calculation
 func _on_spin_completed(result_grid: Array):
 	print("Spin Result:")
 	for i in range(5):
@@ -78,20 +77,13 @@ func _on_spin_completed(result_grid: Array):
 	await get_tree().create_timer(1.0).timeout
 	await stagger_reveal()
 	
-	# NEW: Update score preview in UI
+	# NEW: Update score preview AND highlight pattern immediately
 	update_score_preview()
 	
 	update_ui_labels()
 	is_spinning = false
 	
 	print("Spin completed. Waiting for player to press Ready button...")
-
-# NEW: Function to update score preview
-func update_score_preview() -> void:
-	var preview = run_manager.preview_score()
-	
-	points_label.text = str(preview.points)  # Use preview.points instead
-	mult_label.text = str(preview.mult)
 
 func _on_effects_applied(timing: int):
 	print("[EFFECT] Effects applied at timing: ", timing)
@@ -136,7 +128,7 @@ func _on_respin_button_4_pressed() -> void:
 
 func _on_respin_button5_pressed() -> void:
 	handle_respin(4)
-
+	
 func handle_respin(reel_index: int):
 	if is_spinning:
 		print("Spinning, can't respin now")
@@ -172,7 +164,7 @@ func handle_respin(reel_index: int):
 	
 	await get_tree().create_timer(0.5).timeout
 	
-	# NEW: Update preview after respin
+	# NEW: Update preview and highlighting after respin
 	update_score_preview()
 	
 	update_ui_labels()
@@ -218,3 +210,99 @@ func _on_ready_button_pressed() -> void:
 		print("Goal reached!")
 	
 	print("Score applied. Total score: ", run_manager.get_total_score())
+	
+# ADD TO src/core/playing.gd
+
+# NEW: Update score preview with highlighting
+func update_score_preview() -> void:
+	var preview = run_manager.preview_score()
+	
+	points_label.text = str(preview.points)
+	mult_label.text = str(preview.mult)
+	
+	# NEW: Highlight the matched pattern positions
+	highlight_pattern_positions(preview.get("highlight_positions", []))
+
+# NEW: Highlight all positions for current matched pattern
+func highlight_pattern_positions(positions: Array) -> void:
+	"""Highlight symbols at the given positions"""
+	# First clear any existing highlights
+	clear_pattern_highlighting()
+	
+	# Then highlight the new positions
+	for position in positions:
+		highlight_symbol_at_position(position.x, position.y)
+
+# NEW: Clear all highlighting
+func clear_pattern_highlighting() -> void:
+	"""Remove highlighting from all symbols"""
+	# Iterate through all reels
+	for reel_index in range(reel_container.reel_nodes.size()):
+		var reel_display = reel_container.reel_nodes[reel_index]
+		
+		# Each reel has symbol_positions array
+		if reel_display.has_method("get_children"):
+			for row in range(reel_display.symbol_positions.size()):
+				var position_node = reel_display.symbol_positions[row]
+				
+				# Get the symbol display (first child of position node)
+				if position_node.get_child_count() > 0:
+					var symbol_display = position_node.get_child(0)
+					
+					# Call highlight method if it exists
+					if symbol_display.has_method("set_highlighted"):
+						symbol_display.set_highlighted(false)
+
+# NEW: Highlight a single symbol at reel/row
+func highlight_symbol_at_position(reel: int, row: int) -> void:
+	"""Highlight the symbol at the given reel and row"""
+	# Bounds check
+	if reel < 0 or reel >= reel_container.reel_nodes.size():
+		push_warning("Invalid reel index: %d" % reel)
+		return
+	
+	var reel_display = reel_container.reel_nodes[reel]
+	
+	# Check if row is valid
+	if row < 0 or row >= reel_display.symbol_positions.size():
+		push_warning("Invalid row index: %d for reel %d" % [row, reel])
+		return
+	
+	var position_node = reel_display.symbol_positions[row]
+	
+	# Get the symbol display (first child of position node)
+	if position_node.get_child_count() > 0:
+		var symbol_display = position_node.get_child(0)
+		
+		# Call highlight method if it exists
+		if symbol_display.has_method("set_highlighted"):
+			symbol_display.set_highlighted(true)
+			print("Highlighted symbol at [%d,%d]" % [reel, row])
+		else:
+			push_warning("Symbol display at [%d,%d] has no set_highlighted method" % [reel, row])
+	else:
+		push_warning("No symbol display found at [%d,%d]" % [reel, row])
+
+# NEW: Optional - highlight with animation
+func highlight_symbol_animated(reel: int, row: int) -> void:
+	"""Highlight a symbol with a pulsing animation"""
+	if reel < 0 or reel >= reel_container.reel_nodes.size():
+		return
+	
+	var reel_display = reel_container.reel_nodes[reel]
+	if row < 0 or row >= reel_display.symbol_positions.size():
+		return
+	
+	var position_node = reel_display.symbol_positions[row]
+	if position_node.get_child_count() > 0:
+		var symbol_display = position_node.get_child(0)
+		
+		# First highlight it
+		if symbol_display.has_method("set_highlighted"):
+			symbol_display.set_highlighted(true)
+		
+		# Then create pulsing animation
+		var tween = create_tween()
+		tween.set_loops(3)  # Pulse 3 times
+		tween.tween_property(symbol_display, "scale", Vector2(1.1, 1.1), 0.2)
+		tween.tween_property(symbol_display, "scale", Vector2(1.0, 1.0), 0.2)

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Pattern" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://src/core/effect.gd" id="1_0lbbw"]
+[ext_resource type="Script" path="res://src/effects/addPointEffect.gd" id="2_2knju"]
+[ext_resource type="Script" path="res://src/effects/addMultEffect.gd" id="3_buw7g"]
+[ext_resource type="Script" path="res://src/score/pattern.gd" id="4_oude4"]
+
+[sub_resource type="Resource" id="Resource_polna"]
+script = ExtResource("2_2knju")
+points_to_add = 45
+effect_id = "add_points_45"
+description = "+45 points"
+
+[sub_resource type="Resource" id="Resource_71m64"]
+script = ExtResource("3_buw7g")
+mult_to_add = 3
+effect_id = "add_mult_3"
+description = "+3 mult"
+
+[resource]
+script = ExtResource("4_oude4")
+pattern_id = "corners_all"
+pattern_name = "All Corners"
+description = "Symbols in all four corners"
+cells = PackedInt32Array(1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1)
+pattern_effects = Array[ExtResource("1_0lbbw")]([SubResource("Resource_polna"), SubResource("Resource_71m64")])

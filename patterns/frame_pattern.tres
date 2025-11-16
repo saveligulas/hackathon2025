@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Pattern" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://src/core/effect.gd" id="1_a5whn"]
+[ext_resource type="Script" path="res://src/effects/addPointEffect.gd" id="2_6hi2j"]
+[ext_resource type="Script" path="res://src/effects/addMultEffect.gd" id="3_64ar6"]
+[ext_resource type="Script" path="res://src/score/pattern.gd" id="4_b1mqh"]
+
+[sub_resource type="Resource" id="Resource_otbk4"]
+script = ExtResource("2_6hi2j")
+points_to_add = 50
+effect_id = "add_points_50"
+description = "+50 points"
+
+[sub_resource type="Resource" id="Resource_80tn3"]
+script = ExtResource("3_64ar6")
+mult_to_add = 3
+effect_id = "add_mult_3"
+description = "+3 mult"
+
+[resource]
+script = ExtResource("4_b1mqh")
+pattern_id = "frame_pattern"
+pattern_name = "Frame Border"
+description = "Symbols on left and right edges only"
+cells = PackedInt32Array(1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1)
+pattern_effects = Array[ExtResource("1_a5whn")]([SubResource("Resource_otbk4"), SubResource("Resource_80tn3")])

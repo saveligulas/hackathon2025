@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Pattern" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://src/core/effect.gd" id="1_pd5mw"]
+[ext_resource type="Script" path="res://src/effects/addPointEffect.gd" id="2_lkxmg"]
+[ext_resource type="Script" path="res://src/effects/addMultEffect.gd" id="3_dpfvf"]
+[ext_resource type="Script" path="res://src/score/pattern.gd" id="4_p6wys"]
+
+[sub_resource type="Resource" id="Resource_sjlg3"]
+script = ExtResource("2_lkxmg")
+points_to_add = 30
+effect_id = "add_points_30"
+description = "+30 points"
+
+[sub_resource type="Resource" id="Resource_ci8mo"]
+script = ExtResource("3_dpfvf")
+mult_to_add = 2
+effect_id = "add_mult_2"
+description = "+2 mult"
+
+[resource]
+script = ExtResource("4_p6wys")
+pattern_id = "diagonal_zigzag"
+pattern_name = "Zigzag Pattern"
+description = "Zigzag pattern left-right"
+cells = PackedInt32Array(1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0)
+pattern_effects = Array[ExtResource("1_pd5mw")]([SubResource("Resource_sjlg3"), SubResource("Resource_ci8mo")])

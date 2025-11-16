@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Pattern" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://src/core/effect.gd" id="1_jeslm"]
+[ext_resource type="Script" path="res://src/effects/addPointEffect.gd" id="2_be0wu"]
+[ext_resource type="Script" path="res://src/effects/addMultEffect.gd" id="3_x5s8s"]
+[ext_resource type="Script" path="res://src/score/pattern.gd" id="4_ql3fl"]
+
+[sub_resource type="Resource" id="Resource_erkg6"]
+script = ExtResource("2_be0wu")
+points_to_add = 55
+effect_id = "add_points_55"
+description = "+55 points"
+
+[sub_resource type="Resource" id="Resource_diqjf"]
+script = ExtResource("3_x5s8s")
+mult_to_add = 3
+effect_id = "add_mult_3"
+description = "+3 mult"
+
+[resource]
+script = ExtResource("4_ql3fl")
+pattern_id = "plus_pattern"
+pattern_name = "Plus Sign"
+description = "Plus sign pattern - all middle positions"
+cells = PackedInt32Array(0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0)
+pattern_effects = Array[ExtResource("1_jeslm")]([SubResource("Resource_erkg6"), SubResource("Resource_diqjf")])

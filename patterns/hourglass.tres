@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Pattern" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://src/core/effect.gd" id="1_uvijr"]
+[ext_resource type="Script" path="res://src/effects/addPointEffect.gd" id="2_g2bhn"]
+[ext_resource type="Script" path="res://src/effects/addMultEffect.gd" id="3_jc37g"]
+[ext_resource type="Script" path="res://src/score/pattern.gd" id="4_tlreu"]
+
+[sub_resource type="Resource" id="Resource_1b31o"]
+script = ExtResource("2_g2bhn")
+points_to_add = 55
+effect_id = "add_points_55"
+description = "+55 points"
+
+[sub_resource type="Resource" id="Resource_o8dhk"]
+script = ExtResource("3_jc37g")
+mult_to_add = 3
+effect_id = "add_mult_3"
+description = "+3 mult"
+
+[resource]
+script = ExtResource("4_tlreu")
+pattern_id = "hourglass"
+pattern_name = "Hourglass"
+description = "Hourglass shape (diamond)"
+cells = PackedInt32Array(1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1)
+pattern_effects = Array[ExtResource("1_uvijr")]([SubResource("Resource_1b31o"), SubResource("Resource_o8dhk")])

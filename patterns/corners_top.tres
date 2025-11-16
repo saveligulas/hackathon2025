@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Pattern" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://src/core/effect.gd" id="1_olho4"]
+[ext_resource type="Script" path="res://src/effects/addPointEffect.gd" id="2_col8r"]
+[ext_resource type="Script" path="res://src/effects/addMultEffect.gd" id="3_i4sro"]
+[ext_resource type="Script" path="res://src/score/pattern.gd" id="4_omdih"]
+
+[sub_resource type="Resource" id="Resource_dpilr"]
+script = ExtResource("2_col8r")
+points_to_add = 30
+effect_id = "add_points_30"
+description = "+30 points"
+
+[sub_resource type="Resource" id="Resource_x3x56"]
+script = ExtResource("3_i4sro")
+effect_id = "add_mult_1"
+description = "+1 mult"
+
+[resource]
+script = ExtResource("4_omdih")
+pattern_id = "corners_top"
+pattern_name = "Top Corners"
+description = "Symbols in top-left and top-right"
+cells = PackedInt32Array(1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+pattern_effects = Array[ExtResource("1_olho4")]([SubResource("Resource_dpilr"), SubResource("Resource_x3x56")])
