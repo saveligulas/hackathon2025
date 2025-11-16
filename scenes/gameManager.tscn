@@ -1,14 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://3q562bptvde1"]
+[gd_scene load_steps=4 format=3 uid="uid://3q562bptvde1"]
 
 [ext_resource type="Script" uid="uid://cljcr5ci5arug" path="res://src/core/gameManager.gd" id="1_83k1r"]
 [ext_resource type="PackedScene" uid="uid://etprqw7bt31" path="res://scenes/runManager.tscn" id="2_bb4tu"]
 [ext_resource type="PackedScene" uid="uid://cwbgackfb74xc" path="res://scenes/scoreCalculator.tscn" id="3_x7fn8"]
-[ext_resource type="Script" uid="uid://dntbip43vj61" path="res://src/score/score_calculator.gd" id="4_bbeu6"]
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_83k1r")
 
 [node name="ScoreCalculator" parent="." instance=ExtResource("3_x7fn8")]
-script = ExtResource("4_bbeu6")
 
 [node name="RunManager" parent="." instance=ExtResource("2_bb4tu")]
