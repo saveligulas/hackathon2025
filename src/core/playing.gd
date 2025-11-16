@@ -5,7 +5,7 @@ extends Node2D
     $ReelContainer/GPUParticles2D3,
     $ReelContainer/GPUParticles2D4,
     $ReelContainer/GPUParticles2D5
-    
+
 ]
 
 @onready var respin_buttons := [
