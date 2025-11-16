@@ -334,6 +334,13 @@ icon = ExtResource("9_w0yuy")
 icon_alignment = 1
 expand_icon = true
 
+[node name="Button" type="Button" parent="Slot Machine/Button/Button"]
+layout_mode = 0
+size_flags_horizontal = 3
+icon = ExtResource("9_w0yuy")
+icon_alignment = 1
+expand_icon = true
+
 [node name="ReelContainer" parent="." instance=ExtResource("9_rq5p2")]
 position = Vector2(262, 101)
 
