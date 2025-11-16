@@ -1,9 +1,10 @@
 # src/core/shop.gd
 extends Control
 
-@onready var next_round_button: Button = $MarginContainer/VBoxContainer/Button
-@onready var reward_label: Label = $MarginContainer/VBoxContainer/Reward
-@onready var reward_title: Label = $"MarginContainer/VBoxContainer/Reward Title"
+@onready var next_round_button: Button = $Button
+@onready var reward_label: Label = $Reward
+@onready var reward_title: Label = $"Reward Title"
+
 var run_manager = GameManager.get_node("RunManager")
 var selected_relic: Relic
 

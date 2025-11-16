@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cthxdcqxcchb"]
+[gd_scene load_steps=3 format=3 uid="uid://cthxdcqxcchb"]
 
 [ext_resource type="Script" uid="uid://825n77krh3mj" path="res://src/core/shop.gd" id="1_lx5au"]
+[ext_resource type="Texture2D" uid="uid://hdqoqdgvee7u" path="res://assets/sprites/MachineFrame2.png" id="2_xfvoa"]
 
 [node name="Shop" type="Control"]
 layout_mode = 3
@@ -11,46 +12,68 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lx5au")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+color = Color(0.09411765, 0.003921569, 0.09803922, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xfvoa")
+expand_mode = 2
 
-[node name="Shop Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Shop Label" type="Label" parent="."]
 custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
+layout_mode = 0
+offset_left = 433.0
+offset_top = 77.0
+offset_right = 848.0
+offset_bottom = 277.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.21537971, 0.68755215, 0.4242848, 1)
 theme_override_font_sizes/font_size = 64
 text = "Stage cleared"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Reward Title" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Reward Title" type="Label" parent="."]
 custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
+layout_mode = 0
+offset_left = 20.0
+offset_top = 254.5
+offset_right = 1260.0
+offset_bottom = 454.5
 theme_override_font_sizes/font_size = 48
 text = "Reward"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Reward" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Reward" type="Label" parent="."]
 custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
+layout_mode = 0
+offset_left = 20.0
+offset_top = 361.5
+offset_right = 1260.0
+offset_bottom = 561.5
 theme_override_font_sizes/font_size = 32
 text = "Reward"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 632.0
+offset_right = 1030.0
+offset_bottom = 707.0
 theme_override_font_sizes/font_size = 48
 text = "Next Round"

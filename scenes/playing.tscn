@@ -195,7 +195,7 @@ size_flags_horizontal = 3
 [node name="Title" type="Label" parent="Slot Machine/MarginContainer/Information/HBoxContainer/ReelSpin"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Reel-Spin"
+text = "Re-Spin"
 horizontal_alignment = 1
 
 [node name="Value" type="Label" parent="Slot Machine/MarginContainer/Information/HBoxContainer/ReelSpin"]

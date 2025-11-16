@@ -24,6 +24,14 @@ func display_symbols(symbols: Array[Symbol]):
 
 func reveal():
     show()
+    var original_pos = position
+    var offset = Vector2(0, 40)
+    position = original_pos + offset
+
+    var tween = create_tween()
+    tween.tween_property(self, "position", original_pos, 0.28) \
+        .set_trans(Tween.TRANS_ELASTIC) \
+        .set_ease(Tween.EASE_OUT)
 
 func prepare_for_spin():
     hide()
