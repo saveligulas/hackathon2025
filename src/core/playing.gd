@@ -55,6 +55,7 @@ func _on_button_pressed():
 
 	lever.play("pull")
 	machine_noises.set_stream(AudioManager.sound_lever)
+	machine_noises.play()
 	run_manager.execute_spin()
 	
 
