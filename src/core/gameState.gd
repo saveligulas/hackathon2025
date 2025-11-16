@@ -28,7 +28,7 @@ func activate_all_player_relics() -> void:
 func add_active_effect(effect: Effect) -> void:
     # Check if effect already exists (don't stack duplicate effects)
     var existing = active_effects.filter(func(e): return e.effect_id == effect.effect_id)
-    
+
     if existing.size() > 0:
         # REMOVED: existing[0].stack_count += 1
         # Just don't add duplicates

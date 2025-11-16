@@ -26,19 +26,19 @@ func calculate_score_with_state(slot_grid_result: Array, game_state) -> Dictiona
         if pattern_match_result.matched:
             var pattern_points = 0
             var pattern_mult = 0
-            
+
             for pattern_value in pattern_match_result.fulfilled_lines:
                 var match_data = pattern_match_result.symbol_matches[pattern_value]
                 var symbol: Symbol = match_data.symbol
-                
+
                 for position in match_data.positions:
                     var symbol_context = apply_symbol_effects(symbol, game_state, position, slot_grid_result)
                     pattern_points += symbol_context.points
                     pattern_mult += symbol_context.mult
-            
+
             base_points += pattern_points
             total_mult += pattern_mult
-            
+
             matched_patterns.append({"pattern": pattern, "points": pattern_points, "mult": pattern_mult})
 
     # FREE FLOW
@@ -48,15 +48,15 @@ func calculate_score_with_state(slot_grid_result: Array, game_state) -> Dictiona
             var symbol: Symbol = result.symbol
             var flow_points = 0
             var flow_mult = 0
-            
+
             for position in result.positions:
                 var symbol_context = apply_symbol_effects(symbol, game_state, position, slot_grid_result)
                 flow_points += symbol_context.points
                 flow_mult += symbol_context.mult
-            
+
             base_points += flow_points
             total_mult += flow_mult
-            
+
             matched_patterns.append({"pattern": null, "points": flow_points, "mult": flow_mult, "type": "free_flow"})
 
     # FINAL CALCULATION
