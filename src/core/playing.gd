@@ -63,7 +63,6 @@ func _on_spin_started():
     reel_container.prepare_all_reels()
     update_ui_labels()
 
-# FIXED: Removed duplicate score calculation
 func _on_spin_completed(result_grid: Array):
     print("Spin Result:")
     for i in range(5):
@@ -78,7 +77,6 @@ func _on_spin_completed(result_grid: Array):
     await get_tree().create_timer(1.0).timeout
     await stagger_reveal()
 
-    # NEW: Update score preview in UI
     update_score_preview()
 
     update_ui_labels()
@@ -86,12 +84,20 @@ func _on_spin_completed(result_grid: Array):
 
     print("Spin completed. Waiting for player to press Ready button...")
 
-# NEW: Function to update score preview
-func update_score_preview() -> void:
+func update_score_preview():
     var preview = run_manager.preview_score()
+    update_label_anim(points_label, int(points_label.text), preview.points, 1.5)
+    update_label_anim(mult_label, int(mult_label.text), preview.mult, 1.5)
 
-    points_label.text = str(preview.points)  # Use preview.points instead
-    mult_label.text = str(preview.mult)
+func update_label_anim(label: Label, start_value: int, end_value: int, duration: float=1.5):
+    if end_value > start_value:
+        label.pivot_offset = label.size / 2
+
+        var tween = create_tween()
+        tween.tween_method(
+            func(value): label.text = str(round(value)),
+            start_value, end_value, duration
+        )
 
 func _on_effects_applied(timing: int):
     print("[EFFECT] Effects applied at timing: ", timing)
